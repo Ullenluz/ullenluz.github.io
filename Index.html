@@ -281,58 +281,6 @@
             padding: 15px;
         }
         
-        .tiktok-embed {
-            width: 100%;
-            height: 400px;
-            border: none;
-            display: block;
-        }
-        
-        .tiktok-placeholder {
-            width: 100%;
-            height: 400px;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .tiktok-placeholder .play-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .tiktok-placeholder .tiktok-logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-        
-        .tiktok-placeholder .btn {
-            margin-top: 10px;
-        }
-        
-        .tiktok-placeholder .thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            opacity: 0.3;
-        }
-        
-        .tiktok-placeholder .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
         /* Galeria */
         .galeria {
             background-color: var(--light);
@@ -437,7 +385,7 @@
                 flex-direction: column;
             }
             
-            .video-player, .tiktok-embed, .tiktok-placeholder {
+            .video-player {
                 height: 350px;
             }
         }
@@ -475,7 +423,7 @@
                 font-size: 1.1rem;
             }
             
-            .video-player, .tiktok-embed, .tiktok-placeholder {
+            .video-player {
                 height: 300px;
             }
         }
@@ -493,7 +441,7 @@
                 font-size: 1.8rem;
             }
             
-            .video-player, .tiktok-embed, .tiktok-placeholder {
+            .video-player {
                 height: 250px;
             }
         }
@@ -552,63 +500,45 @@
             <h2>Vídeos em Destaque</h2>
             <div class="videos-grid">
                 <div class="video-item">
-                    <div class="tiktok-placeholder">
-                        <img src="https://via.placeholder.com/300x400?text=Thumbnail+1" alt="Explorando Niterói" class="thumbnail">
-                        <div class="content">
-                            <div class="play-icon">▶</div>
-                            <h3>Explorando Niterói</h3>
-                            <p>Descubra as belezas escondidas de Niterói</p>
-                            <a href="https://www.tiktok.com/@mobileculture/video/VIDEO_ID_1" target="_blank" class="btn">Assistir no TikTok</a>
-                        </div>
-                    </div>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/wcR70cJQ_cs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-info">
                         <h3>Explorando Niterói</h3>
                         <p>Descubra as belezas escondidas de Niterói</p>
                     </div>
                 </div>
                 <div class="video-item">
-                    <div class="tiktok-placeholder">
-                        <img src="https://via.placeholder.com/300x400?text=Thumbnail+2" alt="Cultura Local" class="thumbnail">
-                        <div class="content">
-                            <div class="play-icon">▶</div>
-                            <h3>Cultura Local</h3>
-                            <p>Imersão na cultura e tradições do Rio</p>
-                            <a href="https://www.tiktok.com/@mobileculture/video/VIDEO_ID_2" target="_blank" class="btn">Assistir no TikTok</a>
-                        </div>
-                    </div>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/HWFiQZL2i24" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-info">
                         <h3>Cultura Local</h3>
                         <p>Imersão na cultura e tradições do Rio</p>
                     </div>
                 </div>
                 <div class="video-item">
-                    <div class="tiktok-placeholder">
-                        <img src="https://via.placeholder.com/300x400?text=Thumbnail+3" alt="Gastronomia" class="thumbnail">
-                        <div class="content">
-                            <div class="play-icon">▶</div>
-                            <h3>Gastronomia</h3>
-                            <p>Os sabores únicos da culinária carioca</p>
-                            <a href="https://www.tiktok.com/@mobileculture/video/VIDEO_ID_3" target="_blank" class="btn">Assistir no TikTok</a>
-                        </div>
-                    </div>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/BR7GBL7IrV4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-info">
                         <h3>Gastronomia</h3>
                         <p>Os sabores únicos da culinária carioca</p>
                     </div>
                 </div>
                 <div class="video-item">
-                    <div class="tiktok-placeholder">
-                        <img src="https://via.placeholder.com/300x400?text=Thumbnail+4" alt="Paisagens" class="thumbnail">
-                        <div class="content">
-                            <div class="play-icon">▶</div>
-                            <h3>Paisagens</h3>
-                            <p>As vistas mais impressionantes do Rio</p>
-                            <a href="https://www.tiktok.com/@mobileculture/video/VIDEO_ID_4" target="_blank" class="btn">Assistir no TikTok</a>
-                        </div>
-                    </div>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/tBNsGyeKoN0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <div class="video-info">
                         <h3>Paisagens</h3>
                         <p>As vistas mais impressionantes do Rio</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/OECBajQDdwI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Destinos Únicos</h3>
+                        <p>Lugares especiais que você precisa conhecer</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/0fwJWUVBAR4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Experiências Turísticas</h3>
+                        <p>Vivencie o Rio como um verdadeiro local</p>
                     </div>
                 </div>
             </div>
