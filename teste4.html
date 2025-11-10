@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TripDecoder: Descubra as histórias e curiosidades dos 10 principais pontos turísticos de Niterói, contadas com humor e detalhes fascinantes.">
+    <meta name="author" content="Ullen Luz">
+    <title>TripDecoder – Os 10 Pontos Turísticos de Niterói</title>
+    
+    <!-- SEO Basics -->
+    <link rel="canonical" href="https://ullenluz.github.io/tripdecoder">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="TripDecoder: História e Curiosidades de Niterói">
+    <meta property="og:description" content="Um e-book interativo que revela os segredos por trás dos 10 lugares mais icônicos de Niterói.">
+    <meta property="og:image" content="https://ullenluz.github.io/assets/capa-tripdecoder.jpg">
+    <meta property="og:url" content="https://ullenluz.github.io/tripdecoder">
+    <meta property="og:type" content="website">
+    
+    <!-- Styles: Clean, paginated, book-like with smooth transitions -->
+    <style>
+        :root {
+            --primary: #1a5d57;
+            --accent: #f4a261;
+            --bg: #faf9f6;
+            --text: #2d2d2d;
+            --light: #f0efeb;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: .5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        .author {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+        .author a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+        }
+        nav {
+            background: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .nav-btn {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: .5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent);
+        }
+        main {
+            background: white;
+            margin: 2rem auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .page {
+            display: none;
+            padding: 3rem;
+            min-height: 70vh;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .page h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin-top: .5rem;
+        }
+        .page img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        .fact-box {
+            background: var(--light);
+            padding: 1.5rem;
+            border-left: 5px solid var(--accent);
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: .9rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 1rem;
+            right: 2rem;
+            font-size: .9rem;
+            color: #aaa;
+        }
+        .btn-next {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: .8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: transform 0.2s;
+        }
+        .btn-next:hover {
+            transform: translateX(5px);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .page { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>TripDecoder</h1>
+        <p class="subtitle">A história (quase) secreta dos 10 pontos turísticos mais fascinantes de Niterói</p>
+        <p class="author">Por <a href="https://ullenluz.github.io" target="_blank">Ullen Luz</a></p>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <button class="nav-btn active" data-page="capa">Capa</button>
+        <button class="nav-btn" data-page="intro">Introdução</button>
+        <button class="nav-btn" data-page="mac">1. MAC</button>
+        <button class="nav-btn" data-page="parque">2. Parque da Cidade</button>
+        <button class="nav-btn" data-page="icarai">3. Praia de Icaraí</button>
+        <button class="nav-btn" data-page="santa">4. Fortaleza de Santa Cruz</button>
+        <button class="nav-btn" data-page="camboia">5. Praia de Camboinhas</button>
+        <button class="nav-btn" data-page="itaipu">6. Lagoa de Itaipu</button>
+        <button class="nav-btn" data-page="jurujuba">7. Praia de Jurujuba</button>
+        <button class="nav-btn" data-page="teatro">8. Teatro Popular</button>
+        <button class="nav-btn" data-page="pedra">9. Pedra de Itapuca</button>
+        <button class="nav-btn" data-page="museu">10. Museu do Ingá</button>
+        <button class="nav-btn" data-page="fim">Conclusão</button>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- Capa -->
+    <section id="capa" class="page active">
+        <h2>Bem-vindo ao TripDecoder</h2>
+        <p>Prepare-se para uma jornada onde a história se mistura com o absurdo, e cada curva de Niterói revela um segredo que faria até um carioca da gema coçar a cabeça.</p>
+        <img src="https://images.unsplash.com/photo-1601584111051-8a77e7dc7590?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vista panorâmica da Baía de Guanabara com o MAC ao fundo">
+        <p class="page-number">Página 1</p>
+    </section>
+
+    <!-- Introdução -->
+    <section id="intro" class="page">
+        <h2>Por que Niterói?</h2>
+        <p>Todo mundo já ouviu falar do Cristo, do Pão de Açúcar, da praia de Copacabana. Mas e Niterói? Essa cidade do outro lado da ponte parece um primo excêntrico que ninguém convida para o churrasco, mas que, quando aparece, rouba a cena com histórias que ninguém acredita.</p>
+        <p>Ela foi fundada por um índio chamado Arariboia, tem um museu voador desenhado por Niemeyer, e praias onde o pôr do sol parece pintado à mão por um deus com muito tempo livre. Aqui, o tempo passa devagar, os moradores sorriem sem motivo, e até o trânsito parece ter sido coreografado por um maestro com senso de humor.</p>
+        <p>Neste livro, vamos decodificar 10 lugares que fazem Niterói ser... bem, Niterói. Sem filtros. Sem clichês. Só a verdade nua e crua — e um pouco de exagero, porque ninguém merece um guia turístico sem graça.</p>
+        <a href="#" class="btn-next" onclick="nextPage('intro')">Próximo →</a>
+        <p class="page-number">Página 2</p>
+    </section>
+
+    <!-- 1. MAC -->
+    <section id="mac" class="page">
+        <h2>1. Museu de Arte Contemporânea (MAC)</h2>
+        <p>Imagine um disco voador vermelho que resolveu pousar bem na beira da Baía de Guanabara. Pois é, esse é o MAC, projetado por Oscar Niemeyer — o mesmo cara que desenhou Brasília e que, aparentemente, tinha uma quedinha por curvas impossíveis.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Museu_de_Arte_Contempor%C3%A2nea_de_Niter%C3%B3i_-_Niter%C3%B3i%2C_Rio_de_Janeiro%2C_Brasil.jpg/1280px-Museu_de_Arte_Contempor%C3%A2nea_de_Niter%C3%B3i_-_Niter%C3%B3i%2C_Rio_de_Janeiro%2C_Brasil.jpg" alt="MAC de Niterói ao entardecer">
+        <p>Construído em 1996, o prédio parece flutuar sobre um espelho d’água. Dizem que Niemeyer olhou para o horizonte e pensou: “Falta um OVNI aqui”. E fez. A vista do Rio de lá de cima é tão absurda que você esquece que está num museu. Dentro, as exposições mudam, mas o verdadeiro show é o próprio edifício. A rampa em espiral tem 98 metros — o suficiente para você chegar no topo sem fôlego e com a sensação de que subiu uma montanha russa.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> O MAC foi inaugurado com uma exposição chamada “O Corpo na Arte Contemporânea”. Tradução: tinha gente pelada em cubos de acrílico. Niterói nunca mais foi a mesma.
+        </div>
+        <p>Dica local: Vá no fim da tarde. O pôr do sol reflete no espelho d’água e transforma o museu num portal para outra dimensão. Leve um café. E paciência — a fila para selfie é maior que a do pão na padaria.</p>
+        <a href="#" class="btn-next" onclick="nextPage('mac')">Próximo →</a>
+        <p class="page-number">Página 3</p>
+    </section>
+
+    <!-- 2. Parque da Cidade -->
+    <section id="parque" class="page">
+        <h2>2. Parque da Cidade</h2>
+        <p>Se Niterói fosse um videogame, o Parque da Cidade seria o cheat code para ver o mapa inteiro. Localizado no topo do morro da Viração, a 360 metros de altura, ele oferece uma vista que faz o Rio parecer uma maquete de arquiteto.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Parque_da_Cidade_-_Niter%C3%B3i.jpg/1280px-Parque_da_Cidade_-_Niter%C3%B3i.jpg" alt="Vista aérea do Parque da Cidade">
+        <p>Você pode chegar de carro, de asa-delta (se tiver coragem) ou a pé — mas só se quiser chegar suado e com a alma purificada. Lá em cima tem pista de voo livre, trilhas, e um silêncio que só é quebrado pelo barulho de parapentes riscando o céu como gaivotas com crise de identidade.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> Em 1974, um piloto de asa-delta chamado “Pepê” (sim, o mesmo da praia) usou o parque como base para voos que entraram para a história. Hoje, tem até uma estátua dele — meio que um santo padroeiro dos malucos do ar.
+        </div>
+        <p>Dica: Leve binóculo. Dá pra ver o Cristo, o Pão de Açúcar, e até o seu ex na praia de Copacabana (se ele estiver traindo você com um bronzeado).</p>
+        <a href="#" class="btn-next" onclick="nextPage('parque')">Próximo →</a>
+        <p class="page-number">Página 4</p>
+    </section>
+
+    <!-- 3. Praia de Icaraí -->
+    <section id="icarai" class="page">
+        <h2>3. Praia de Icaraí</h2>
+        <p>Icaraí não é uma praia para quem quer onda gigante. É para quem quer vida. A orla é um calçadão de 2 km onde ciclistas, skatistas, cachorros com coleira de strass e avós fazendo tai chi disputam espaço como se fosse a final da Copa do Mundo de convivência.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Praia_de_Icara%C3%AD_-_Niter%C3%B3i.jpg/1280px-Praia_de_Icara%C3%AD_-_Niter%C3%B3i.jpg" alt="Calçadão da Praia de Icaraí ao amanhecer">
+        <p>O mar é calmo, quase um lago com crise de identidade. Perfeito para crianças, cães e adultos que fingem que sabem nadar. À noite, o calçadão vira pista de corrida, bar ao ar livre e palco de flertes que nunca dão certo.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> Nos anos 70, Icaraí era point de surfistas que vinham do Rio de balsa. Hoje, o maior esporte é ver quem pedala mais rápido sem derrubar o sorvete.
+        </div>
+        <p>Dica: Experimente o quiosque do “Zeca”. O açaí com banana e granola é tão bom que até o Cristo desce do morro pra provar (mentira, mas quase).</p>
+        <a href="#" class="btn-next" onclick="nextPage('icarai')">Próximo →</a>
+        <p class="page-number">Página 5</p>
+    </section>
+
+    <!-- 4. Fortaleza de Santa Cruz -->
+    <section id="santa" class="page">
+        <h2>4. Fortaleza de Santa Cruz</h2>
+        <p>Construída em 1555 para proteger a Baía de Guanabara de franceses que queriam roubar pau-brasil (e, quem sabe, umas praias), a Fortaleza de Santa Cruz é o avô de todas as defesas costeiras do Brasil.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Fortaleza_de_Santa_Cruz_da_Barra_-_Niter%C3%B3i.jpg/1280px-Fortaleza_de_Santa_Cruz_da_Barra_-_Niter%C3%B3i.jpg" alt="Canhoes da Fortaleza de Santa Cruz">
+        <p>Os canhões ainda estão lá, apontados para o mar como se esperassem um navio pirata a qualquer momento. Durante a visita guiada, você descobre que os portugueses eram paranoicos — e com razão. A fortaleza trocou de mãos mais vezes que moeda de troco em feira.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> Em 1710, o pirata francês Duclerc tentou invadir pelo lado errado e acabou preso. Morreu na cadeia. Moral da história: nunca subestime um forte com vista para o mar.
+        </div>
+        <p>Dica: Vista-se de turista discreto. O Exército ainda administra o lugar, e eles não curtem selfies com fuzil.</p>
+        <a href="#" class="btn-next" onclick="nextPage('santa')">Próximo →</a>
+        <p class="page-number">Página 6</p>
+    </section>
+
+    <!-- 5. Praia de Camboinhas -->
+    <section id="camboia" class="page">
+        <h2>5. Praia de Camboinhas</h2>
+        <p>Camboinhas é o que acontece quando a natureza decide fazer uma praia só para relaxar. Areia branca, coqueiros alinhados como soldados, e um mar que parece ter sido filtrado no Photoshop.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Praia_de_Camboinhas_-_Niter%C3%B3i.jpg/1280px-Praia_de_Camboinhas_-_Niter%C3%B3i.jpg" alt="Areia branca e mar calmo de Camboinhas">
+        <p>É point de famílias, kitesurfistas e casais que querem namorar sem plateia. O nome vem de “camboa”, uma armadilha de pesca indígena. Hoje, a única armadilha é o sol — que te pega desprevenido e te deixa vermelho como camarão.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> Em 2010, Camboinhas ganhou Bandeira Azul — um selo internacional de praia limpinha. Tradução: pode mergulhar sem medo de sair com um pneu na cabeça.
+        </div>
+        <p>Dica: Leve guarda-sol. A sombra é artigo de luxo.</p>
+        <a href="#" class="btn-next" onclick="nextPage('camboia')">Próximo →</a>
+        <p class="page-number">Página 7</p>
+    </section>
+
+    <!-- 6. Lagoa de Itaipu -->
+    <section id="itaipu" class="page">
+        <h2>6. Lagoa de Itaipu</h2>
+        <p>Escondida entre dunas e restinga, a Lagoa de Itaipu é um oásis onde o tempo parou nos anos 80. Água doce, peixes, e uma tranquilidade que faz você esquecer que o mundo existe.</p>
+        <img src="https://live.staticflickr.com/65535/51234567890_12ab34cdef_b.jpg" alt="Lagoa de Itaipu ao entardecer">
+        <p>É point de stand-up paddle, caiaque e piqueniques onde o maior perigo é uma formiga roubando seu sanduíche. A restinga ao redor é protegida — lar de garças, capivaras e, segundo moradores, um jacaré que nunca aparece (mas todo mundo jura que viu).</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> A lagoa faz parte do Parque Estadual da Serra da Tiririca. Tradução: é área de preservação. Não jogue lixo. A natureza te agradece — e a multa também.
+        </div>
+        <p>Dica: Vá de bike. O caminho é lindo, e você queima as calorias do pastel que vai comer depois.</p>
+        <a href="#" class="btn-next" onclick="nextPage('itaipu')">Próximo →</a>
+        <p class="page-number">Página 8</p>
+    </section>
+
+    <!-- 7. Praia de Jurujuba -->
+    <section id="jurujuba" class="page">
+        <h2>7. Praia de Jurujuba</h2>
+        <p>Jurujuba é a praia dos pescadores, dos bares pé-na-areia e do cheiro de moqueca que te faz salivar a 100 metros. O mar é calmo, a vibe é roots, e o pôr do sol é de tirar o fôlego — e a razão.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Praia_de_Jurujuba_-_Niter%C3%B3i.jpg/1280px-Praia_de_Jurujuba_-_Niter%C3%B3i.jpg" alt="Barcos ancorados em Jurujuba">
+        <p>Antigamente, era ponto de saveiros que traziam peixe fresco pro Rio. Hoje, os barcos ainda estão lá, mas agora dividem espaço com iates de playboys e caiaques de hipsters.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> O nome “Jurujuba” vem do tupi e significa “lugar de muitas jurus” (um tipo de peixe). Tradução: aqui o peixe é rei. E você é o súdito que paga a conta.
+        </div>
+        <p>Dica: Experimente a moqueca do Bar do Meio. Peça com pirão. E reze pra não chover — o telhado é de confiança.</p>
+        <a href="#" class="btn-next" onclick="nextPage('jurujuba')">Próximo →</a>
+        <p class="page-number">Página 9</p>
+    </section>
+
+    <!-- 8. Teatro Popular Oscar Niemeyer -->
+    <section id="teatro" class="page">
+        <h2>8. Teatro Popular Oscar Niemeyer</h2>
+        <p>O Teatro Popular parece uma concha acústica que resolveu virar prédio. Projetado por Niemeyer (de novo ele!), tem capacidade para 2.400 pessoas sentadas — ou 3.000 em pé, se for show de pagode.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Teatro_Popular_de_Niter%C3%B3i.jpg/1280px-Teatro_Popular_de_Niter%C3%B3i.jpg" alt="Fachada curva do Teatro Popular">
+        <p>Inaugurado em 2007, já recebeu de ópera a stand-up comedy. A acústica é tão boa que até sussurro vira grito. E a vista do Caminho Niemeyer (o complexo ao redor) é um bônus que ninguém pediu, mas todo mundo ama.</p>
+        <div class="fact-box">
+            <strong>Curiosidade:</strong> O teatro foi construído em tempo recorde: 11 meses. Niemeyer tinha 99 anos. Moral: idade é só número quando você é gênio.
+        </div>
+        <p>Dica: Chegue cedo. O estacionamento é uma aventura à parte.</p>
+        <a href="#" class="btn-next" onclick="nextPage('teatro')">Próximo →</a>
+        <p class="page-number">Página 10</p>
+    </section>
+
+    <!-- 9. Pedra de Itapuca -->
+    <section id="pedra" class="page">
+        <h2>9. Pedra de Itapuca</h2>
+        <p>A Pedra de Itapuca é uma formação rochosa que parece ter sido esculpida por um gigante com preguiça. Fica na Praia de Itacoatiara e é point de escaladores, fotógrafos e casais que querem parecer aventureiros no Instagram.</p>
+        <img src="https://live.staticflickr.com/65535/48123456789_90ab12cd34_b.jpg" alt="Pedra de Itapuca ao am
