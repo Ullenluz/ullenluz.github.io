@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ullen Luz - Ator e Apresentador | Especialista em Turismo</title>
-    <meta name="description" content="Ullen Luz é ator e apresentador especializado em turismo, explorando destinos incríveis como Niterói e outras maravilhas do Rio de Janeiro.">
-    <meta name="keywords" content="Ullen Luz, ator, apresentador, turismo, Niterói, Rio de Janeiro, viagens">
+    <meta name="description" content="Ullen Luz é ator e apresentador especializado em turismo. Descubra o Rio de Janeiro e Niterói com tours e experiências únicas.">
+    <meta name="keywords" content="Ullen Luz, ator, apresentador, turismo, Niterói, Rio de Janeiro, viagens, tours, passeios">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ullen Luz - Ator e Apresentador">
+    <meta property="og:description" content="Descubra o Rio de Janeiro e Niterói com tours e experiências únicas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ullenluz.com">
+    <meta property="og:image" content="https://ullenluz.com/Foto principal.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ullen Luz - Ator e Apresentador">
+    <meta name="twitter:description" content="Descubra o Rio de Janeiro e Niterói com tours e experiências únicas.">
+    <meta name="twitter:image" content="https://ullenluz.com/Foto principal.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset e estilos base */
+        /* ========== BASE STYLES ========== */
         :root {
             --primary: #1a5276;
             --secondary: #f39c12;
@@ -17,6 +33,8 @@
             --white: #ffffff;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
+            --success: #27ae60;
+            --error: #e74c3c;
         }
         
         * {
@@ -30,7 +48,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--white);
@@ -102,13 +120,18 @@
             letter-spacing: 1px;
         }
         
-        .btn:hover {
+        .btn:hover, .btn:focus {
             background-color: #e67e22;
             transform: translateY(-3px);
             box-shadow: var(--shadow);
+            outline: none;
         }
         
-        /* Header */
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* ========== HEADER ========== */
         header {
             position: fixed;
             top: 0;
@@ -157,7 +180,7 @@
             transition: var(--transition);
         }
         
-        .nav-links a:hover:after {
+        .nav-links a:hover:after, .nav-links a:focus:after {
             width: 100%;
         }
         
@@ -165,9 +188,12 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--primary);
         }
         
-        /* Hero Section */
+        /* ========== HERO SECTION ========== */
         .hero {
             height: 100vh;
             display: flex;
@@ -202,6 +228,9 @@
             color: var(--white);
             font-size: 2rem;
             animation: bounce 2s infinite;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
         
         @keyframes bounce {
@@ -216,7 +245,214 @@
             }
         }
         
-        /* Sobre */
+        /* ========== TOURS SECTION ========== */
+        .tours {
+            background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
+            color: var(--white);
+        }
+        
+        .tours h2 {
+            color: var(--white);
+        }
+        
+        .tours h2:after {
+            background: var(--secondary);
+        }
+        
+        .special-offer {
+            background: linear-gradient(135deg, var(--secondary), #e67e22);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover, .card:focus-within {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+        
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover img, .card:focus-within img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .card p {
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .card-info {
+            margin-top: auto;
+        }
+        
+        .duration {
+            font-weight: 600;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .feature h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+        
+        .feature p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--light);
+        }
+        
+        /* ========== VÍDEOS ========== */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .video-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .video-item:hover, .video-item:focus-within {
+            transform: translateY(-10px);
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        /* ========== GALERIA ========== */
+        .galeria {
+            background-color: var(--light);
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .galeria-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            height: 250px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .galeria-item:hover, .galeria-item:focus {
+            transform: translateY(-5px);
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* ========== SOBRE ========== */
         .sobre {
             background-color: var(--light);
         }
@@ -249,66 +485,7 @@
             flex: 1;
         }
         
-        /* Vídeos */
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .video-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            background: var(--white);
-        }
-        
-        .video-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .video-player {
-            width: 100%;
-            height: 400px;
-            border: none;
-            display: block;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        /* Galeria */
-        .galeria {
-            background-color: var(--light);
-        }
-        
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        .galeria-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
-            height: 250px;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        /* Contato */
+        /* ========== CONTATO ========== */
         .contato-content {
             display: flex;
             flex-wrap: wrap;
@@ -358,12 +535,136 @@
             font-size: 1.2rem;
         }
         
-        .social-link:hover {
+        .social-link:hover, .social-link:focus {
             background-color: var(--secondary);
             transform: translateY(-5px);
+            outline: none;
         }
         
-        /* Footer */
+        /* ========== MODAL STYLES ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--text);
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover, .modal-close:focus {
+            color: var(--secondary);
+            background-color: rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--white);
+            color: var(--text);
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 82, 118, 0.2);
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .tour-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--light);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .tour-item button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .tour-item button:hover, .tour-item button:focus {
+            background-color: #e67e22;
+            outline: none;
+        }
+        
+        /* ========== FOOTER ========== */
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -371,7 +672,66 @@
             padding: 40px 0;
         }
         
-        /* Responsividade */
+        /* ========== LOADING ANIMATION ========== */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ========== NOTIFICATION STYLES ========== */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            z-index: 1100;
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: var(--error);
+        }
+        
+        /* ========== SKIP LINK ========== */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 1001;
+            text-decoration: none;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* ========== RESPONSIVIDADE ========== */
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.5rem;
@@ -426,6 +786,29 @@
             .video-player {
                 height: 300px;
             }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-150%);
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
         }
         
         @media (max-width: 576px) {
@@ -448,18 +831,22 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
     <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
                 <div class="logo">Ullen Luz</div>
                 <ul class="nav-links">
-                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#tours">Passeios</a></li>
                     <li><a href="#videos">Vídeos</a></li>
                     <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
-                <div class="mobile-menu">☰</div>
+                <button class="mobile-menu" aria-label="Abrir menu">☰</button>
             </nav>
         </div>
     </header>
@@ -470,25 +857,48 @@
             <div class="hero-content">
                 <h1>Ullen Luz</h1>
                 <p>Ator e Apresentador especializado em turismo e cultura</p>
-                <p>Descubra os destinos mais incríveis</p>
-                <a href="#contato" class="btn">Entre em Contato</a>
+                <p>Descubra os destinos mais incríveis do Rio de Janeiro e Niterói</p>
+                <a href="#tours" class="btn">Conhecer os Passeios</a>
             </div>
         </div>
-        <a href="#sobre" class="scroll-down">↓</a>
+        <button class="scroll-down" aria-label="Role para baixo">↓</button>
     </section>
 
-    <!-- Sobre -->
-    <section id="sobre" class="sobre">
+    <!-- Tours Section -->
+    <section id="tours" class="tours">
         <div class="container">
-            <h2>Sobre</h2>
-            <div class="sobre-content">
-                <div class="sobre-img">
-                    <img src="Foto principal 1.jpg" alt="Ullen Luz - Ator e Apresentador">
+            <h2>Sua Experiência no Rio</h2>
+            
+            <div class="special-offer">
+                <h3>🔥 Oferta Especial!</h3>
+                <p>Reserve 2 passeios e ganhe desconto especial na segunda reserva</p>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--secondary);">Passeios Populares</h3>
+            <div class="cards-container" id="tours-container">
+                <!-- Tours will be populated by JavaScript -->
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h4>Guias Especialistas Locais</h4>
+                    <p>Nossos guias são locais certificados que conhecem os tesouros escondidos e os melhores pontos.</p>
                 </div>
-                <div class="sobre-text">
-                    <p>Ullen Luz é um talentoso ator e apresentador com especialização em conteúdo turístico e cultural. Com uma abordagem única e envolvente, ele leva os espectadores a uma jornada por destinos incríveis, explorando a riqueza cultural e as belezas naturais de cada local.</p>
-                    <p>Seu trabalho combina narrativa cinematográfica com informações valiosas para viajantes, criando uma experiência imersiva que inspira e informa. Com foco especial em Niterói e Rio de Janeiro, Ullen revela cantos escondidos e perspectivas únicas sobre destinos conhecidos e desconhecidos.</p>
-                    <p>Sua paixão por conectar pessoas a lugares através de histórias autênticas faz dele uma referência no segmento de turismo e entretenimento.</p>
+                <div class="feature">
+                    <div class="feature-icon">💎</div>
+                    <h4>Experiências Exclusivas</h4>
+                    <p>Acesso a locais e vivências que vão além dos roteiros turísticos convencionais.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h4>Cancelamento Flexível</h4>
+                    <p>Cancelamento gratuito até 24 horas antes do seu passeio para reembolso total.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <h4>Avaliação 5 Estrelas</h4>
+                    <p>Avaliada com 4.9/5 por mais de 1.000 viajantes. Sua satisfação é nossa prioridade.</p>
                 </div>
             </div>
         </div>
@@ -500,45 +910,24 @@
             <h2>Vídeos em Destaque</h2>
             <div class="videos-grid">
                 <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/wcR70cJQ_cs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/wcR70cJQ_cs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Explorando Niterói"></iframe>
                     <div class="video-info">
                         <h3>Explorando Niterói</h3>
                         <p>Descubra as belezas escondidas de Niterói</p>
                     </div>
                 </div>
                 <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/HWFiQZL2i24" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/HWFiQZL2i24" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Cultura Local"></iframe>
                     <div class="video-info">
                         <h3>Cultura Local</h3>
                         <p>Imersão na cultura e tradições do Rio</p>
                     </div>
                 </div>
                 <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/BR7GBL7IrV4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="video-player" src="https://www.youtube.com/embed/BR7GBL7IrV4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Gastronomia"></iframe>
                     <div class="video-info">
                         <h3>Gastronomia</h3>
                         <p>Os sabores únicos da culinária carioca</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/tBNsGyeKoN0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Paisagens</h3>
-                        <p>As vistas mais impressionantes do Rio</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/OECBajQDdwI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Destinos Únicos</h3>
-                        <p>Lugares especiais que você precisa conhecer</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <iframe class="video-player" src="https://www.youtube.com/embed/0fwJWUVBAR4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Experiências Turísticas</h3>
-                        <p>Vivencie o Rio como um verdadeiro local</p>
                     </div>
                 </div>
             </div>
@@ -551,20 +940,114 @@
             <h2>Galeria</h2>
             <div class="galeria-grid">
                 <div class="galeria-item">
-                    <img src="" alt="Ullen Luz" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Foto principal.jpg" alt="Ullen Luz - Ator e Apresentador" loading="lazy">
                 </div>
                 <div class="galeria-item">
-                    <img src="" alt="Ullen Luz" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Foto principal 1.jpg" alt="Ullen Luz - Ator e Apresentador" loading="lazy">
                 </div>
                 <div class="galeria-item">
-                    Mais Fotos em Breve
+                    <img src="https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg" alt="Cristo Redentor" loading="lazy">
                 </div>
                 <div class="galeria-item">
-                    Novos Projetos
+                    <img src="https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg" alt="Pão de Açúcar" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Copacabana%20Beach.jpg" alt="Praia de Copacabana" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Selaronstairs.jpeg" alt="Escadaria Selarón" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Arcosdalapa.jpg" alt="Arcos da Lapa" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Museu_do_Amanh%C3%A3.jpg" alt="Museu do Amanhã" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Icara%C3%AD%20Beach.jpg" alt="Praia de Icaraí" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Ilha-de-Paqueta.jpg" alt="Ilha de Paquetá" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/Contemporary%20Art%20Museum%20(MAC).jpg" alt="Museu de Arte Contemporânea" loading="lazy">
+                </div>
+                <div class="galeria-item">
+                    <img src="https://tripdecoder.github.io/cost%C3%A3o.jpg" alt="Trilha do Costão de Itacoatiara" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre</h2>
+            <div class="sobre-content">
+                <div class="sobre-img">
+                    <img src="Foto principal 1.jpg" alt="Ullen Luz - Ator e Apresentador" loading="lazy">
+                </div>
+                <div class="sobre-text">
+                    <p>Ullen Luz é um talentoso ator e apresentador com especialização em conteúdo turístico e cultural. Com uma abordagem única e envolvente, ele leva os espectadores a uma jornada por destinos incríveis, explorando a riqueza cultural e as belezas naturais de cada local.</p>
+                    <p>Seu trabalho combina narrativa cinematográfica com informações valiosas para viajantes, criando uma experiência imersiva que inspira e informa. Com foco especial em Niterói e Rio de Janeiro, Ullen revela cantos escondidos e perspectivas únicas sobre destinos conhecidos e desconhecidos.</p>
+                    <p>Sua paixão por conectar pessoas a lugares através de histórias autênticas o levou a criar experiências turísticas únicas com guias locais especializados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="BookingModal.close()" aria-label="Fechar modal">×</button>
+            <h3 id="modal-title">Solicite Cotação dos Passeios</h3>
+            <div id="tour-list"></div>
+            <button onclick="BookingModal.showAvailableTours()" class="btn" style="background-color: var(--primary);">Adicionar Outro Passeio</button>
+            <div id="available-tours">
+                <h4>Selecione mais passeios:</h4>
+                <ul id="tours-available"></ul>
+                <button onclick="BookingModal.confirmSelection()" class="btn" style="background-color: var(--primary);">Confirmar Seleção</button>
+            </div>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name">Nome Completo:</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Seu nome completo">
+                    <div class="error-message" id="name-error">Por favor, insira seu nome completo</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Número de Telefone:</label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="+55 (21) 99999-9999">
+                    <div class="error-message" id="phone-error">Por favor, insira um número de telefone válido</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" required placeholder="seu.email@exemplo.com">
+                    <div class="error-message" id="email-error">Por favor, insira um email válido</div>
+                </div>
+                <div class="form-group">
+                    <label for="date">Data Preferida:</label>
+                    <input type="date" id="date" class="form-control" required min="">
+                    <div class="error-message" id="date-error">Por favor, selecione uma data válida</div>
+                </div>
+                <div class="form-group">
+                    <label for="people">Número de Pessoas:</label>
+                    <input type="number" id="people" min="1" max="15" class="form-control" required placeholder="1">
+                    <div class="error-message" id="people-error">Por favor, insira um número válido de pessoas (1-15)</div>
+                </div>
+                <div class="form-group">
+                    <label for="special-requests">Observações (opcional):</label>
+                    <textarea id="special-requests" class="form-control" placeholder="Algum requisito especial ou observação..."></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="button" onclick="BookingModal.submitForm()" class="btn" id="submit-btn">
+                        <span id="submit-text">Solicitar Cotação</span>
+                        <span id="submit-loading" class="loading" style="display: none;"></span>
+                    </button>
+                    <button type="button" onclick="BookingModal.close()" class="btn" style="background-color: #95a5a6;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Contato -->
     <section id="contato" class="contato">
@@ -587,10 +1070,27 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/tripdecoder/" target="_blank" class="social-link">IG</a>
-                        <a href="https://www.tiktok.com/@mobileculture?_r=1&_t=ZS-91Eyx4V213g" target="_blank" class="social-link">TT</a>
+                        <a href="https://www.instagram.com/tripdecoder/" target="_blank" class="social-link" aria-label="Instagram">IG</a>
+                        <a href="https://www.tiktok.com/@mobileculture?_r=1&_t=ZS-91Eyx4V213g" target="_blank" class="social-link" aria-label="TikTok">TT</a>
+                        <a href="#" class="social-link" aria-label="Facebook">FB</a>
+                        <a href="#" class="social-link" aria-label="YouTube">YT</a>
                     </div>
                 </div>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Nome:</label>
+                        <input type="text" id="contact-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email:</label>
+                        <input type="email" id="contact-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Mensagem:</label>
+                        <textarea id="contact-message" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
             </div>
         </div>
     </section>
@@ -602,45 +1102,505 @@
         </div>
     </footer>
 
+    <!-- Notification Element -->
+    <div id="notification" class="notification"></div>
+
     <script>
-        // Menu mobile
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+        // ========== TOUR DATA ==========
+        const tourData = [
+            {
+                name: "Cristo Redentor",
+                description: "Visite uma das Novas Sete Maravilhas do Mundo com acesso prioritário e comentários especializados.",
+                image: "https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg",
+                alt: "Cristo Redentor no Corcovado",
+                duration: "4 horas",
+                includes: ["Busca no hotel", "Ingressos prioritários", "Guia especializado"]
+            },
+            {
+                name: "Pão de Açúcar",
+                description: "Desfrute de vistas deslumbrantes de 360° do Rio deste marco icônico via bondinho.",
+                image: "https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg",
+                alt: "Vista do bondinho do Pão de Açúcar",
+                duration: "3 horas",
+                includes: ["Ingressos do bondinho", "Guia", "Oportunidades fotográficas"]
+            },
+            {
+                name: "Praia de Copacabana",
+                description: "Vivencie a energia de uma das praias mais famosas do mundo com um guia local.",
+                image: "https://tripdecoder.github.io/Copacabana%20Beach.jpg",
+                alt: "Praia de Copacabana com seu calçadão",
+                duration: "2.5 horas",
+                includes: ["Guia da praia", "Petiscos locais", "Insights culturais"]
+            },
+            {
+                name: "Escadaria Selarón",
+                description: "Descubra a história vibrante por trás desses famosos degraus coloridos criados pelo artista Jorge Selarón.",
+                image: "https://tripdecoder.github.io/Selaronstairs.jpeg",
+                alt: "Escadaria colorida de Selarón no Rio de Janeiro",
+                duration: "2 horas",
+                includes: ["História da arte", "Sessão de fotos", "Tour pelo bairro local"]
+            },
+            {
+                name: "Arcos da Lapa",
+                description: "Explore o aqueduto histórico e o vibrante distrito de vida noturna no centro do Rio.",
+                image: "https://tripdecoder.github.io/Arcosdalapa.jpg",
+                alt: "Arcos da Lapa no Rio de Janeiro",
+                duration: "3 horas",
+                includes: ["Contexto histórico", "Tour noturno", "Visita a bar local"]
+            },
+            {
+                name: "Museu do Amanhã",
+                description: "Explore sustentabilidade e possibilidades futuras nesta maravilha arquitetônica.",
+                image: "https://tripdecoder.github.io/Museu_do_Amanh%C3%A3.jpg",
+                alt: "Museu do Amanhã no Rio de Janeiro",
+                duration: "3.5 horas",
+                includes: ["Ingressos do museu", "Guia científico", "Exposições interativas"]
+            },
+            {
+                name: "Praia de Icaraí",
+                description: "Relaxe em uma das praias mais famosas de Niterói com vistas deslumbrantes do Pão de Açúcar.",
+                image: "https://tripdecoder.github.io/Icara%C3%AD%20Beach.jpg",
+                alt: "Praia de Icaraí com vista do Pão de Açúcar",
+                duration: "2 horas",
+                includes: ["Guia da praia", "Dicas locais", "Pontos de vista cênica"]
+            },
+            {
+                name: "Ilha de Paquetá",
+                description: "Escape para este paraíso sem carros na Baía de Guanabara com arquitetura colonial.",
+                image: "https://tripdecoder.github.io/Ilha-de-Paqueta.jpg",
+                alt: "Ilha de Paquetá com bicicletas e coqueiros",
+                duration: "6 horas",
+                includes: ["Passagens de balsa", "Aluguel de bicicleta", "Guia da ilha"]
+            },
+            {
+                name: "Museu de Arte Contemporânea (MAC)",
+                description: "Experiencie um ícone da arquitetura moderna com exposições incríveis e vistas panorâmicas.",
+                image: "https://tripdecoder.github.io/Contemporary%20Art%20Museum%20(MAC).jpg",
+                alt: "Museu de Arte Contemporânea (MAC) Niterói",
+                duration: "2.5 horas",
+                includes: ["Ingressos do museu", "Tour de arquitetura", "Acesso ao mirante"]
+            },
+            {
+                name: "Trilha do Costão de Itacoatiara",
+                description: "Uma trilha costeira desafiadora com vistas espetaculares do oceano e formações rochosas.",
+                image: "https://tripdecoder.github.io/cost%C3%A3o.jpg",
+                alt: "Trilha do Costão de Itacoatiara",
+                duration: "4 horas",
+                includes: ["Guia certificado", "Equipamento de segurança", "Lanche"]
+            }
+        ];
 
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
+        // ========== UTILITY FUNCTIONS ==========
+        const Utils = {
+            validatePhone: (phone) => {
+                const cleanNumber = phone.replace(/\D/g, '');
+                return cleanNumber.length >= 10 && cleanNumber.length <= 11;
+            },
+            
+            validateEmail: (email) => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            },
+            
+            formatDate: (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            },
+            
+            createCard: (item) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                card.innerHTML = `
+                    <div class="card-img-container">
+                        <img src="${item.image}" alt="${item.alt}" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="card-info">
+                            <p class="duration">⏱️ ${item.duration}</p>
+                            <button class="btn" onclick="BookingModal.open('${item.name}')" style="background-color: var(--secondary);">Solicitar Cotação</button>
+                        </div>
+                    </div>
+                `;
+                
+                return card;
+            },
+            
+            setMinDate: () => {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const yyyy = tomorrow.getFullYear();
+                const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const dd = String(tomorrow.getDate()).padStart(2, '0');
+                
+                return `${yyyy}-${mm}-${dd}`;
+            },
+            
+            showNotification: (message, type = 'success') => {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+        };
 
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // ========== BOOKING MODAL ==========
+        const BookingModal = {
+            selectedTours: [],
+            
+            init: function() {
+                this.cacheDom();
+                this.bindEvents();
+                this.setMinBookingDate();
+                this.populateTours();
+            },
+            
+            cacheDom: function() {
+                this.modal = document.getElementById('booking-modal');
+                this.modalTitle = document.getElementById('modal-title');
+                this.tourList = document.getElementById('tour-list');
+                this.availableToursSection = document.getElementById('available-tours');
+                this.toursAvailableList = document.getElementById('tours-available');
+                this.bookingForm = document.getElementById('booking-form');
+                this.submitBtn = document.getElementById('submit-btn');
+                this.submitText = document.getElementById('submit-text');
+                this.submitLoading = document.getElementById('submit-loading');
+            },
+            
+            bindEvents: function() {
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.close();
+                    }
+                });
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                // Set minimum date for booking
+                this.setMinBookingDate();
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                // Add real-time validation
+                this.addFormValidation();
+            },
+            
+            addFormValidation: function() {
+                const nameInput = document.getElementById('name');
+                const phoneInput = document.getElementById('phone');
+                const emailInput = document.getElementById('email');
+                const dateInput = document.getElementById('date');
+                const peopleInput = document.getElementById('people');
+                
+                // Real-time validation
+                nameInput.addEventListener('blur', () => this.validateField(nameInput, 'name'));
+                phoneInput.addEventListener('blur', () => this.validateField(phoneInput, 'phone'));
+                emailInput.addEventListener('blur', () => this.validateField(emailInput, 'email'));
+                dateInput.addEventListener('blur', () => this.validateField(dateInput, 'date'));
+                peopleInput.addEventListener('blur', () => this.validateField(peopleInput, 'people'));
+            },
+            
+            validateField: function(input, fieldName) {
+                const errorElement = document.getElementById(`${fieldName}-error`);
+                let isValid = true;
+                
+                switch(fieldName) {
+                    case 'name':
+                        isValid = input.value.trim().length > 0;
+                        break;
+                    case 'phone':
+                        isValid = Utils.validatePhone(input.value);
+                        break;
+                    case 'email':
+                        isValid = Utils.validateEmail(input.value);
+                        break;
+                    case 'date':
+                        isValid = input.value && new Date(input.value) >= new Date(Utils.setMinDate());
+                        break;
+                    case 'people':
+                        isValid = input.value >= 1 && input.value <= 15;
+                        break;
+                }
+                
+                if (isValid) {
+                    input.style.borderColor = '#ddd';
+                    errorElement.style.display = 'none';
+                } else {
+                    input.style.borderColor = 'var(--error)';
+                    errorElement.style.display = 'block';
+                }
+                
+                return isValid;
+            },
+            
+            setMinBookingDate: function() {
+                const dateInput = document.getElementById('date');
+                if (dateInput) {
+                    dateInput.min = Utils.setMinDate();
+                }
+            },
+            
+            populateTours: function() {
+                const toursContainer = document.getElementById('tours-container');
+                toursContainer.innerHTML = '';
+                
+                tourData.forEach(tour => {
+                    toursContainer.appendChild(Utils.createCard(tour));
+                });
+            },
+            
+            open: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                
+                if (index === -1) {
+                    this.selectedTours.push(tourName);
+                } else {
+                    this.selectedTours.splice(index, 1);
+                }
+                
+                this.updateTourList();
+                this.modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Focus on first form element for accessibility
+                setTimeout(() => {
+                    document.getElementById('name').focus();
+                }, 100);
+            },
+            
+            close: function() {
+                this.selectedTours = [];
+                this.modal.style.display = 'none';
+                this.availableToursSection.style.display = 'none';
+                this.bookingForm.reset();
+                document.body.style.overflow = 'auto';
+            },
+            
+            showAvailableTours: function() {
+                this.toursAvailableList.innerHTML = '';
+                
+                const notSelectedTours = tourData.filter(tour => 
+                    !this.selectedTours.includes(tour.name)
+                );
+                
+                if (notSelectedTours.length === 0) {
+                    this.toursAvailableList.innerHTML = '<p style="text-align: center; color: #aaa;">Todos os passeios já estão selecionados</p>';
+                    return;
+                }
+                
+                notSelectedTours.forEach(tour => {
+                    const item = document.createElement('li');
+                    item.style.marginBottom = '10px';
+                    item.innerHTML = `
+                        <input type="checkbox" id="tour-${tour.name.replace(/\s+/g, '-')}" value="${tour.name}">
+                        <label for="tour-${tour.name.replace(/\s+/g, '-')}">
+                            ${tour.name}
+                        </label>
+                    `;
+                    this.toursAvailableList.appendChild(item);
+                });
+                
+                this.availableToursSection.style.display = 'block';
+            },
+            
+            confirmSelection: function() {
+                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
+                let selectedCount = 0;
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const tour = tourData.find(t => t.name === checkbox.value);
+                        if (tour && !this.selectedTours.includes(tour.name)) {
+                            this.selectedTours.push(tour.name);
+                            selectedCount++;
+                        }
+                    }
+                });
+                
+                if (selectedCount > 0) {
+                    this.updateTourList();
+                    this.availableToursSection.style.display = 'none';
+                    Utils.showNotification(`${selectedCount} passeio(s) adicionado(s) à sua solicitação`);
+                } else {
+                    Utils.showNotification('Por favor, selecione pelo menos um passeio para adicionar.', 'error');
+                }
+            },
+            
+            removeTour: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                if (index !== -1) {
+                    this.selectedTours.splice(index, 1);
+                    this.updateTourList();
+                    Utils.showNotification(`${tourName} removido da sua solicitação`);
+                }
+            },
+            
+            updateTourList: function() {
+                this.tourList.innerHTML = '';
+                
+                if (this.selectedTours.length === 0) {
+                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">Nenhum passeio selecionado. Clique em "Adicionar Outro Passeio" para navegar pelas opções.</p>';
+                } else {
+                    this.selectedTours.forEach((tour) => {
+                        const item = document.createElement('div');
+                        item.className = 'tour-item';
+                        item.innerHTML = `
+                            <span><strong>${tour}</strong></span>
+                            <button onclick="BookingModal.removeTour('${tour}')">Remover</button>
+                        `;
+                        this.tourList.appendChild(item);
                     });
                 }
-            });
-        });
-
-        // Adicionar classe ao scroll para header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if(window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                
+                const toursText = `passeio${this.selectedTours.length !== 1 ? 's' : ''} selecionado${this.selectedTours.length !== 1 ? 's' : ''}`;
+                this.modalTitle.textContent = `Solicite Cotação dos Passeios (${this.selectedTours.length} ${toursText})`;
+            },
+            
+            submitForm: function() {
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const date = document.getElementById('date').value;
+                const people = parseInt(document.getElementById('people').value);
+                const specialRequests = document.getElementById('special-requests').value.trim();
+                
+                // Validate all fields
+                const isNameValid = this.validateField(document.getElementById('name'), 'name');
+                const isPhoneValid = this.validateField(document.getElementById('phone'), 'phone');
+                const isEmailValid = this.validateField(document.getElementById('email'), 'email');
+                const isDateValid = this.validateField(document.getElementById('date'), 'date');
+                const isPeopleValid = this.validateField(document.getElementById('people'), 'people');
+                
+                if (!isNameValid || !isPhoneValid || !isEmailValid || !isDateValid || !isPeopleValid || this.selectedTours.length === 0) {
+                    Utils.showNotification('Por favor, preencha todos os campos obrigatórios corretamente e selecione pelo menos um passeio.', 'error');
+                    return;
+                }
+                
+                if (people < 1 || people > 15) {
+                    Utils.showNotification('Por favor, insira um número válido de pessoas (1-15).', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                this.submitText.style.display = 'none';
+                this.submitLoading.style.display = 'inline-block';
+                this.submitBtn.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    this.sendBookingRequest(name, phone, email, date, people, specialRequests);
+                }, 1500);
+            },
+            
+            sendBookingRequest: function(name, phone, email, date, people, specialRequests) {
+                // Create WhatsApp message
+                let message = `*SOLICITAÇÃO DE COTAÇÃO - ULLEN LUZ*%0A%0A`;
+                message += `*PASSEIOS SOLICITADOS:*%0A`;
+                message += this.selectedTours.map(tour => `- ${tour}`).join('%0A');
+                
+                message += `%0A%0A*DETALHES DA SOLICITAÇÃO:*%0A`;
+                message += `👤 *Nome:* ${name}%0A`;
+                message += `📞 *Telefone:* ${phone}%0A`;
+                message += `📧 *Email:* ${email}%0A`;
+                message += `📅 *Data:* ${Utils.formatDate(date)}%0A`;
+                message += `👥 *Número de pessoas:* ${people}%0A`;
+                
+                if (specialRequests) {
+                    message += `💬 *Observações:* ${specialRequests}%0A`;
+                }
+                
+                message += `%0A_Esta solicitação foi enviada através do site de Ullen Luz_`;
+                
+                const whatsAppNumber = '5521990455492';
+                const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${message}`;
+                
+                window.open(whatsAppLink, '_blank');
+                
+                // Reset loading state
+                this.submitText.style.display = 'inline-block';
+                this.submitLoading.style.display = 'none';
+                this.submitBtn.disabled = false;
+                
+                Utils.showNotification('Solicitação enviada com sucesso! Você será redirecionado para o WhatsApp.');
+                
+                this.close();
             }
+        };
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal
+            BookingModal.init();
+            
+            // Mobile menu
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelector('.nav-links').classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll down button
+            document.querySelector('.scroll-down').addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.getElementById('tours').offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                Utils.showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                this.reset();
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if(window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    BookingModal.close();
+                }
+            });
         });
     </script>
 </body>
