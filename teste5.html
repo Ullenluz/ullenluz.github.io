@@ -4,349 +4,790 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TripDecoder: Descubra as histórias e curiosidades dos 10 principais pontos turísticos de Niterói, contadas com humor e detalhes fascinantes.">
-    <meta name="author" content="Ullen Luz">
-    <title>TripDecoder – Os 10 Pontos Turísticos de Niterói</title>
-    
-    <!-- SEO Basics -->
-    <link rel="canonical" href="https://ullenluz.github.io/tripdecoder">
-    
-    <!-- Open Graph for Social Sharing -->
-    <meta property="og:title" content="TripDecoder: História e Curiosidades de Niterói">
-    <meta property="og:description" content="Um e-book interativo que revela os segredos por trás dos 10 lugares mais icônicos de Niterói.">
-    <meta property="og:image" content="https://ullenluz.github.io/assets/capa-tripdecoder.jpg">
-    <meta property="og:url" content="https://ullenluz.github.io/tripdecoder">
+    <title>Ullen Luz – Experiências VIP no Rio</title>
+    <meta name="description" content="Experiências VIP exclusivas com Ullen Luz. Grupos de até 10 pessoas. Roteiros personalizados. Reserva online com Stripe + Calendly.">
+    <meta name="keywords" content="Ullen Luz, experiências VIP, turismo de luxo, Rio de Janeiro, Niterói, reserva online, Stripe, Calendly">
+    <meta property="og:title" content="Ullen Luz – Experiências VIP">
+    <meta property="og:description" content="Grupos pequenos. Roteiros sob medida. Reserva em tempo real.">
+    <meta property="og:image" content="Foto principal.jpg">
+    <meta property="og:url" content="https://ullenluz.com">
     <meta property="og:type" content="website">
-    
-    <!-- Styles: Clean, paginated, book-like with smooth transitions -->
+
+    <!-- Preload -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="Foto principal.jpg" as="image">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Calendly -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
     <style>
         :root {
-            --primary: #1a5d57;
-            --accent: #f4a261;
-            --bg: #faf9f6;
-            --text: #2d2d2d;
-            --light: #f0efeb;
+            --primary: #1a5276;
+            --secondary: #f39c12;
+            --accent: #e67e22;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --text: #34495e;
+            --white: #ffffff;
+            --gray: #95a5a6;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.2);
+            --radius: 10px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --container: min(90%, 1200px);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
+        [data-theme="dark"] {
+            --primary: #3498db;
+            --secondary: #f1c40f;
+            --dark: #1a1a1a;
+            --light: #2c3e50;
+            --text: #ecf0f1;
+            --white: #1e1e1e;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
         body {
-            font-family: 'Georgia', serif;
-            background: var(--bg);
-            color: var(--text);
+            margin: 0;
+            font-family: 'Poppins', system-ui, sans-serif;
             line-height: 1.7;
-            overflow-x: hidden;
+            color: var(--text);
+            background: var(--white);
+            transition: background 0.4s, color 0.4s;
         }
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
+            width: var(--container);
+            margin-inline: auto;
+            padding-inline: 1rem;
         }
+        section { padding: 5rem 0; }
+        h1, h2, h3 { margin: 0 0 1rem; line-height: 1.2; font-weight: 600; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+        h2 { font-size: clamp(2rem, 6vw, 2.8rem); text-align: center; position: relative; margin-bottom: 3rem; }
+        h2::after {
+            content: ""; position: absolute; bottom: -0.75rem; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background: var(--secondary); border-radius: 2px;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem;
+            background: var(--secondary); color: var(--white); border: none; border-radius: var(--radius);
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer;
+            transition: var(--transition); text-decoration: none; font-size: 0.95rem;
+        }
+        .btn:hover { background: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .btn-outline { background: transparent; border: 2px solid var(--secondary); color: var(--secondary); }
+        .btn-outline:hover { background: var(--secondary); color: var(--white); }
+
+        /* Header */
         header {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-            position: relative;
+            position: fixed; inset: 0 0 auto; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px); z-index: 1000; box-shadow: var(--shadow-sm);
         }
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 4px;
-            background: var(--accent);
+        [data-theme="dark"] header { background: rgba(30,30,30,0.95); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.75rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { position: relative; font-weight: 500; color: var(--text); text-decoration: none; }
+        .nav-links a::after { content: ""; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: var(--transition); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu, .theme-toggle, .lang-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh; display: grid; place-items: center;
+            background: linear-gradient(135deg, rgba(26,82,118,0.85), rgba(26,82,118,0.7)), url('Foto principal.jpg') center/cover no-repeat;
+            color: var(--white); text-align: center; position: relative;
         }
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: .5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .hero-content { max-width: 900px; animation: fadeUp 1s ease-out; }
+        .hero .badge {
+            display: inline-block; background: var(--secondary); color: var(--white);
+            padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin: 1rem 0;
         }
-        .subtitle {
-            font-size: 1.4rem;
-            font-style: italic;
-            opacity: 0.9;
+
+        /* Sobre */
+        .sobre { background: var(--light); }
+        .sobre-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .sobre-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
+        .sobre-img img { width: 100%; transition: var(--transition); }
+        .sobre-img:hover img { transform: scale(1.05); }
+
+        /* Reserva */
+        .reserva { background: linear-gradient(135deg, var(--primary), var(--dark)); color: var(--white); }
+        .reserva h2, .reserva h3 { color: var(--white); }
+        .reserva-steps {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;
         }
-        .author {
-            margin-top: 2rem;
-            font-size: 1.2rem;
+        .step {
+            background: rgba(255,255,255,0.1); padding: 2rem; border-radius: var(--radius);
+            text-align: center; backdrop-filter: blur(12px);
         }
-        .author a {
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px dashed var(--accent);
+        .step-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 1rem; }
+        .calendly-inline-widget { min-height: 700px; margin-top: 2rem; }
+
+        /* Áudio Tour */
+        .audio-tour {
+            background: var(--light); padding: 3rem 0;
         }
-        nav {
-            background: var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .audio-player {
+            background: var(--white); padding: 1.5rem; border-radius: var(--radius);
+            box-shadow: var(--shadow-md); max-width: 600px; margin: 2rem auto;
         }
-        .nav-container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .nav-btn {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            padding: .5rem 1rem;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-        }
-        main {
-            background: white;
-            margin: 2rem auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-        .page {
-            display: none;
-            padding: 3rem;
-            min-height: 70vh;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .page h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        .page h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin-top: .5rem;
-        }
-        .page img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-        .fact-box {
-            background: var(--light);
-            padding: 1.5rem;
-            border-left: 5px solid var(--accent);
-            margin: 1.5rem 0;
-            font-style: italic;
-            border-radius: 0 8px 8px 0;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: .9rem;
-            color: #666;
-            border-top: 1px solid #eee;
-            margin-top: 3rem;
-        }
-        .page-number {
-            position: absolute;
-            bottom: 1rem;
-            right: 2rem;
-            font-size: .9rem;
-            color: #aaa;
-        }
-        .btn-next {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: .8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-top: 2rem;
-            transition: transform 0.2s;
-        }
-        .btn-next:hover {
-            transform: translateX(5px);
+        .audio-player audio { width: 100%; }
+
+        /* Contato & Footer */
+        .contato-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        footer { background: var(--dark); color: var(--light); text-align: center; padding: 3rem 0; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sobre-content, .contato-content { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .page { padding: 2rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 1.5rem; box-shadow: var(--shadow-md); }
+            [data-theme="dark"] .nav-links { background: #1e1e1e; }
+            .nav-links.active { display: flex; }
+            .mobile-menu, .theme-toggle, .lang-toggle { display: block; }
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
-<header>
-    <div class="container">
-        <h1>TripDecoder</h1>
-        <p class="subtitle">A história (quase) secreta dos 10 pontos turísticos mais fascinantes de Niterói</p>
-        <p class="author">Por <a href="https://ullenluz.github.io" target="_blank">Ullen Luz</a></p>
+    <!-- Header -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">Ullen Luz</a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#reserva">Reserva</a></li>
+                <li><a href="#audio">Áudio Tour</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="mobile-menu" aria-label="Menu">Menu</div>
+            <div class="theme-toggle" aria-label="Dark Mode" title="Alternar tema">Moon</div>
+            <div class="lang-toggle" aria-label="Idioma" title="Mudar idioma">Globe</div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Ullen Luz</h1>
+            <p>Experiências VIP exclusivas no Rio de Janeiro e Niterói</p>
+            <p>Grupos de até <strong>10 pessoas</strong>. Roteiros <strong>sob medida</strong>.</p>
+            <div class="badge">Máximo 10 por grupo</div>
+            <a href="#reserva" class="btn">Reservar Agora</a>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Quem Sou</h2>
+            <div class="sobre-content">
+                <div class="sobre-img">
+                    <img src="Foto principal 1.jpg" alt="Ullen Luz" loading="lazy">
+                </div>
+                <div>
+                    <p>Sou <strong>Ullen Luz</strong>, ator e apresentador especializado em criar <strong>experiências VIP autênticas</strong>.</p>
+                    <p>Com grupos de <strong>no máximo 10 pessoas</strong>, garanto atenção total e roteiros 100% personalizados ao seu gosto.</p>
+                    <p>Do nascer do sol no Cristo à trilha secreta em Niterói — cada detalhe é pensado para ser <strong>exclusivo e imersivo</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva com Stripe + Calendly -->
+    <section id="reserva" class="reserva">
+        <div class="container">
+            <h2>Reserve Sua Experiência VIP</h2>
+            <p style="text-align:center;max-width:800px;margin:auto;font-size:1.1rem;">
+                Escolha a data, pague com segurança via <strong>Stripe</strong>, e confirme com <strong>Calendly</strong>.
+            </p>
+
+            <div class="reserva-steps">
+                <div class="step">
+                    <div class="step-icon">Calendar</div>
+                    <h3>1. Escolha a Data</h3>
+                    <p>Use o calendário abaixo para ver disponibilidade.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">Credit Card</div>
+                    <h3>2. Pague com Stripe</h3>
+                    <p>Depósito de 50% para garantir sua vaga.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">Checkmark</div>
+                    <h3>3. Confirmação Imediata</h3>
+                    <p>Receba e-mail + WhatsApp com detalhes.</p>
+                </div>
+            </div>
+
+            <!-- Calendly Widget -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/ullenluz/vip-experience?hide_event_type_details=1&hide_landing_page_details=1"></div>
+
+            <!-- Stripe Payment (exemplo com botão) -->
+            <div style="text-align:center;margin-top:3rem;">
+                <button id="checkout-button" class="btn" style="background:var(--secondary);">
+                    Pagar Depósito (R$ 750) via Stripe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Áudio Tour Multilíngue -->
+    <section id="audio" class="audio-tour">
+        <div class="container">
+            <h2>Áudio Tour Exclusivo</h2>
+            <p style="text-align:center;max-width:700px;margin:auto;">
+                Baixe o áudio tour narrado por Ullen Luz em <strong>português, inglês ou espanhol</strong>.
+            </p>
+
+            <div class="audio-player">
+                <h3>Escadaria Selarón – Narrado por Ullen Luz</h3>
+                <select id="audio-lang" style="margin-bottom:1rem;padding:0.5rem;border-radius:8px;">
+                    <option value="pt">Português</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+                <audio id="audio-player" controls>
+                    <source src="https://ullenluz.com/audio/selaron-pt.mp3" type="audio/mpeg">
+                    Seu navegador não suporta áudio.
+                </audio>
+            </div>
+
+            <div style="text-align:center;">
+                <a href="#" class="btn btn-outline">Baixar Áudio Tour Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="contato-content">
+                <div>
+                    <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem;">
+                        <div style="width:50px;height:50px;background:var(--light);border-radius:50%;display:grid;place-items:center;font-size:1.4rem;">WhatsApp</div>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/5521990455492" target="_blank">+55 (21) 99045-5492</a></p>
+                        </div>
+                    </div>
+                </div>
+                <form>
+                    <input type="text" placeholder="Nome *" class="form-control" required style="display:block;width:100%;margin-bottom:1rem;padding:0.75rem;border:1px solid #ddd;border-radius:8px;">
+                    <input type="email" placeholder="E-mail *" class="form-control" required style="display:block;width:100%;margin-bottom:1rem;padding:0.75rem;border:1px solid #ddd;border-radius:8px;">
+                    <textarea placeholder="Mensagem *" rows="5" class="form-control" required style="display:block;width:100%;margin-bottom:1rem;padding:0.75rem;border:1px solid #ddd;border-radius:8px;"></textarea>
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Ullen Luz. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+
+        // Multilíngue (simplificado)
+        const audioLang = document.getElementById('audio-lang');
+        const audioPlayer = document.getElementById('audio-player');
+        const audioMap = {
+            pt: 'https://ullenluz.com/audio/selaron-pt.mp3',
+            en: 'https://ullenluz.com/audio/selaron-en.mp3',
+            es: 'https://ullenluz.com/audio/selaron-es.mp3'
+        };
+        audioLang.addEventListener('change', () => {
+            audioPlayer.src = audioMap[audioLang.value];
+            audioPlayer.load();
+        });
+
+        // Stripe Checkout
+        const stripe = Stripe('pk_test_51...'); // Substitua pela sua chave pública
+        document.getElementById('checkout-button').addEventListener('click', () => {
+            stripe.redirectToCheckout({
+                lineItems: [{ price: 'price_1...', quantity: 1 }],
+                mode: 'payment',
+                successUrl: window.location.origin + '/obrigado',
+                cancelUrl: window.location.origin + '/cancelado',
+            });
+        });
+
+        // Mobile Menu
+        document.querySelector('.mobile-menu').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Ano
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Carregar tema salvo
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+    /* Estilos do Banner de Cookies */
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #2c3e50;
+        color: white;
+        padding: 15px 20px;
+        box-shadow: 0 -2px 15px rgba(0,0,0,0.2);
+        z-index: 10000;
+        display: none;
+        font-family: Arial, sans-serif;
+    }
+    
+    .cookie-banner.show {
+        display: block;
+        animation: slideUp 0.4s ease-out;
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+    
+    .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    
+    .cookie-text {
+        flex: 1;
+        min-width: 300px;
+        margin: 0;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+    
+    .cookie-text a {
+        color: #3498db;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    
+    .cookie-text a:hover {
+        color: #2980b9;
+    }
+    
+    .cookie-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .cookie-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    
+    .cookie-accept {
+        background: #27ae60;
+        color: white;
+    }
+    
+    .cookie-accept:hover {
+        background: #219653;
+        transform: translateY(-2px);
+    }
+    
+    .cookie-reject {
+        background: #e74c3c;
+        color: white;
+    }
+    
+    .cookie-reject:hover {
+        background: #c0392b;
+        transform: translateY(-2px);
+    }
+    
+    .cookie-customize {
+        background: #f39c12;
+        color: white;
+    }
+    
+    .cookie-customize:hover {
+        background: #d35400;
+        transform: translateY(-2px);
+    }
+    
+    /* Modal de Cookies */
+    .cookie-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 10001;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .cookie-modal.show {
+        display: flex;
+    }
+    
+    .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    }
+    
+    .modal-content h3 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+        text-align: center;
+        font-size: 22px;
+    }
+    
+    .cookie-options {
+        margin-bottom: 25px;
+    }
+    
+    .cookie-option {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: border-color 0.3s;
+    }
+    
+    .cookie-option:hover {
+        border-color: #3498db;
+        background-color: #f8f9fa;
+    }
+    
+    .cookie-option input {
+        margin-right: 10px;
+        margin-top: 2px;
+    }
+    
+    .cookie-desc {
+        display: block;
+        font-size: 13px;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    .modal-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .cookie-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .cookie-buttons {
+            justify-content: center;
+        }
+        
+        .modal-buttons {
+            flex-direction: column;
+        }
+        
+        .cookie-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<!-- Banner de Cookies -->
+<div id="cookieBanner" class="cookie-banner">
+    <div class="cookie-content">
+        <p class="cookie-text">
+            Nós utilizamos cookies para melhorar sua experiência em nosso site. 
+            Ao continuar navegando, você concorda com nossa 
+            <a href="https://www.wordluz.com/p/politica-de-privacidade.html" target="_blank">Política de Privacidade</a>.
+        </p>
+        <div class="cookie-buttons">
+            <button id="acceptCookies" class="cookie-btn cookie-accept">Aceitar Todos</button>
+            <button id="rejectCookies" class="cookie-btn cookie-reject">Rejeitar</button>
+            <button id="customizeCookies" class="cookie-btn cookie-customize">Personalizar</button>
+        </div>
     </div>
-</header>
+</div>
 
-<nav>
-    <div class="nav-container">
-        <button class="nav-btn active" data-page="capa">Capa</button>
-        <button class="nav-btn" data-page="intro">Introdução</button>
-        <button class="nav-btn" data-page="mac">1. MAC</button>
-        <button class="nav-btn" data-page="parque">2. Parque da Cidade</button>
-        <button class="nav-btn" data-page="icarai">3. Praia de Icaraí</button>
-        <button class="nav-btn" data-page="santa">4. Fortaleza de Santa Cruz</button>
-        <button class="nav-btn" data-page="camboia">5. Praia de Camboinhas</button>
-        <button class="nav-btn" data-page="itaipu">6. Lagoa de Itaipu</button>
-        <button class="nav-btn" data-page="jurujuba">7. Praia de Jurujuba</button>
-        <button class="nav-btn" data-page="teatro">8. Teatro Popular</button>
-        <button class="nav-btn" data-page="pedra">9. Pedra de Itapuca</button>
-        <button class="nav-btn" data-page="museu">10. Museu do Ingá</button>
-        <button class="nav-btn" data-page="fim">Conclusão</button>
+<!-- Modal para personalização de cookies -->
+<div id="cookieModal" class="cookie-modal">
+    <div class="modal-content">
+        <h3>Preferências de Cookies</h3>
+        <div class="cookie-options">
+            <label class="cookie-option">
+                <input type="checkbox" id="necessaryCookies" checked disabled>
+                <span class="checkmark"></span>
+                Cookies Necessários
+                <span class="cookie-desc">Essenciais para o funcionamento do site. Não podem ser desativados.</span>
+            </label>
+            
+            <label class="cookie-option">
+                <input type="checkbox" id="analyticsCookies">
+                <span class="checkmark"></span>
+                Cookies Analíticos
+                <span class="cookie-desc">Nos ajudam a entender como você usa o site para melhorá-lo.</span>
+            </label>
+            
+            <label class="cookie-option">
+                <input type="checkbox" id="marketingCookies">
+                <span class="checkmark"></span>
+                Cookies de Marketing
+                <span class="cookie-desc">Para mostrar anúncios relevantes baseados em seus interesses.</span>
+            </label>
+        </div>
+        <div class="modal-buttons">
+            <button id="savePreferences" class="cookie-btn cookie-accept">Salvar Preferências</button>
+            <button id="closeModal" class="cookie-btn cookie-reject">Cancelar</button>
+        </div>
     </div>
-</nav>
+</div>
 
-<main class="container">
-    <!-- Capa -->
-    <section id="capa" class="page active">
-        <h2>Bem-vindo ao TripDecoder</h2>
-        <p>Prepare-se para uma jornada onde a história se mistura com o absurdo, e cada curva de Niterói revela um segredo que faria até um carioca da gema coçar a cabeça.</p>
-        <img src="https://images.unsplash.com/photo-1601584111051-8a77e7dc7590?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vista panorâmica da Baía de Guanabara com o MAC ao fundo">
-        <p class="page-number">Página 1</p>
-    </section>
-
-    <!-- Introdução -->
-    <section id="intro" class="page">
-        <h2>Por que Niterói?</h2>
-        <p>Todo mundo já ouviu falar do Cristo, do Pão de Açúcar, da praia de Copacabana. Mas e Niterói? Essa cidade do outro lado da ponte parece um primo excêntrico que ninguém convida para o churrasco, mas que, quando aparece, rouba a cena com histórias que ninguém acredita.</p>
-        <p>Ela foi fundada por um índio chamado Arariboia, tem um museu voador desenhado por Niemeyer, e praias onde o pôr do sol parece pintado à mão por um deus com muito tempo livre. Aqui, o tempo passa devagar, os moradores sorriem sem motivo, e até o trânsito parece ter sido coreografado por um maestro com senso de humor.</p>
-        <p>Neste livro, vamos decodificar 10 lugares que fazem Niterói ser... bem, Niterói. Sem filtros. Sem clichês. Só a verdade nua e crua — e um pouco de exagero, porque ninguém merece um guia turístico sem graça.</p>
-        <a href="#" class="btn-next" onclick="nextPage('intro')">Próximo →</a>
-        <p class="page-number">Página 2</p>
-    </section>
-
-    <!-- 1. MAC -->
-    <section id="mac" class="page">
-        <h2>1. Museu de Arte Contemporânea (MAC)</h2>
-        <p>Imagine um disco voador vermelho que resolveu pousar bem na beira da Baía de Guanabara. Pois é, esse é o MAC, projetado por Oscar Niemeyer — o mesmo cara que desenhou Brasília e que, aparentemente, tinha uma quedinha por curvas impossíveis.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Museu_de_Arte_Contempor%C3%A2nea_de_Niter%C3%B3i_-_Niter%C3%B3i%2C_Rio_de_Janeiro%2C_Brasil.jpg/1280px-Museu_de_Arte_Contempor%C3%A2nea_de_Niter%C3%B3i_-_Niter%C3%B3i%2C_Rio_de_Janeiro%2C_Brasil.jpg" alt="MAC de Niterói ao entardecer">
-        <p>Construído em 1996, o prédio parece flutuar sobre um espelho d’água. Dizem que Niemeyer olhou para o horizonte e pensou: “Falta um OVNI aqui”. E fez. A vista do Rio de lá de cima é tão absurda que você esquece que está num museu. Dentro, as exposições mudam, mas o verdadeiro show é o próprio edifício. A rampa em espiral tem 98 metros — o suficiente para você chegar no topo sem fôlego e com a sensação de que subiu uma montanha russa.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> O MAC foi inaugurado com uma exposição chamada “O Corpo na Arte Contemporânea”. Tradução: tinha gente pelada em cubos de acrílico. Niterói nunca mais foi a mesma.
-        </div>
-        <p>Dica local: Vá no fim da tarde. O pôr do sol reflete no espelho d’água e transforma o museu num portal para outra dimensão. Leve um café. E paciência — a fila para selfie é maior que a do pão na padaria.</p>
-        <a href="#" class="btn-next" onclick="nextPage('mac')">Próximo →</a>
-        <p class="page-number">Página 3</p>
-    </section>
-
-    <!-- 2. Parque da Cidade -->
-    <section id="parque" class="page">
-        <h2>2. Parque da Cidade</h2>
-        <p>Se Niterói fosse um videogame, o Parque da Cidade seria o cheat code para ver o mapa inteiro. Localizado no topo do morro da Viração, a 360 metros de altura, ele oferece uma vista que faz o Rio parecer uma maquete de arquiteto.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Parque_da_Cidade_-_Niter%C3%B3i.jpg/1280px-Parque_da_Cidade_-_Niter%C3%B3i.jpg" alt="Vista aérea do Parque da Cidade">
-        <p>Você pode chegar de carro, de asa-delta (se tiver coragem) ou a pé — mas só se quiser chegar suado e com a alma purificada. Lá em cima tem pista de voo livre, trilhas, e um silêncio que só é quebrado pelo barulho de parapentes riscando o céu como gaivotas com crise de identidade.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> Em 1974, um piloto de asa-delta chamado “Pepê” (sim, o mesmo da praia) usou o parque como base para voos que entraram para a história. Hoje, tem até uma estátua dele — meio que um santo padroeiro dos malucos do ar.
-        </div>
-        <p>Dica: Leve binóculo. Dá pra ver o Cristo, o Pão de Açúcar, e até o seu ex na praia de Copacabana (se ele estiver traindo você com um bronzeado).</p>
-        <a href="#" class="btn-next" onclick="nextPage('parque')">Próximo →</a>
-        <p class="page-number">Página 4</p>
-    </section>
-
-    <!-- 3. Praia de Icaraí -->
-    <section id="icarai" class="page">
-        <h2>3. Praia de Icaraí</h2>
-        <p>Icaraí não é uma praia para quem quer onda gigante. É para quem quer vida. A orla é um calçadão de 2 km onde ciclistas, skatistas, cachorros com coleira de strass e avós fazendo tai chi disputam espaço como se fosse a final da Copa do Mundo de convivência.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Praia_de_Icara%C3%AD_-_Niter%C3%B3i.jpg/1280px-Praia_de_Icara%C3%AD_-_Niter%C3%B3i.jpg" alt="Calçadão da Praia de Icaraí ao amanhecer">
-        <p>O mar é calmo, quase um lago com crise de identidade. Perfeito para crianças, cães e adultos que fingem que sabem nadar. À noite, o calçadão vira pista de corrida, bar ao ar livre e palco de flertes que nunca dão certo.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> Nos anos 70, Icaraí era point de surfistas que vinham do Rio de balsa. Hoje, o maior esporte é ver quem pedala mais rápido sem derrubar o sorvete.
-        </div>
-        <p>Dica: Experimente o quiosque do “Zeca”. O açaí com banana e granola é tão bom que até o Cristo desce do morro pra provar (mentira, mas quase).</p>
-        <a href="#" class="btn-next" onclick="nextPage('icarai')">Próximo →</a>
-        <p class="page-number">Página 5</p>
-    </section>
-
-    <!-- 4. Fortaleza de Santa Cruz -->
-    <section id="santa" class="page">
-        <h2>4. Fortaleza de Santa Cruz</h2>
-        <p>Construída em 1555 para proteger a Baía de Guanabara de franceses que queriam roubar pau-brasil (e, quem sabe, umas praias), a Fortaleza de Santa Cruz é o avô de todas as defesas costeiras do Brasil.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Fortaleza_de_Santa_Cruz_da_Barra_-_Niter%C3%B3i.jpg/1280px-Fortaleza_de_Santa_Cruz_da_Barra_-_Niter%C3%B3i.jpg" alt="Canhoes da Fortaleza de Santa Cruz">
-        <p>Os canhões ainda estão lá, apontados para o mar como se esperassem um navio pirata a qualquer momento. Durante a visita guiada, você descobre que os portugueses eram paranoicos — e com razão. A fortaleza trocou de mãos mais vezes que moeda de troco em feira.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> Em 1710, o pirata francês Duclerc tentou invadir pelo lado errado e acabou preso. Morreu na cadeia. Moral da história: nunca subestime um forte com vista para o mar.
-        </div>
-        <p>Dica: Vista-se de turista discreto. O Exército ainda administra o lugar, e eles não curtem selfies com fuzil.</p>
-        <a href="#" class="btn-next" onclick="nextPage('santa')">Próximo →</a>
-        <p class="page-number">Página 6</p>
-    </section>
-
-    <!-- 5. Praia de Camboinhas -->
-    <section id="camboia" class="page">
-        <h2>5. Praia de Camboinhas</h2>
-        <p>Camboinhas é o que acontece quando a natureza decide fazer uma praia só para relaxar. Areia branca, coqueiros alinhados como soldados, e um mar que parece ter sido filtrado no Photoshop.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Praia_de_Camboinhas_-_Niter%C3%B3i.jpg/1280px-Praia_de_Camboinhas_-_Niter%C3%B3i.jpg" alt="Areia branca e mar calmo de Camboinhas">
-        <p>É point de famílias, kitesurfistas e casais que querem namorar sem plateia. O nome vem de “camboa”, uma armadilha de pesca indígena. Hoje, a única armadilha é o sol — que te pega desprevenido e te deixa vermelho como camarão.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> Em 2010, Camboinhas ganhou Bandeira Azul — um selo internacional de praia limpinha. Tradução: pode mergulhar sem medo de sair com um pneu na cabeça.
-        </div>
-        <p>Dica: Leve guarda-sol. A sombra é artigo de luxo.</p>
-        <a href="#" class="btn-next" onclick="nextPage('camboia')">Próximo →</a>
-        <p class="page-number">Página 7</p>
-    </section>
-
-    <!-- 6. Lagoa de Itaipu -->
-    <section id="itaipu" class="page">
-        <h2>6. Lagoa de Itaipu</h2>
-        <p>Escondida entre dunas e restinga, a Lagoa de Itaipu é um oásis onde o tempo parou nos anos 80. Água doce, peixes, e uma tranquilidade que faz você esquecer que o mundo existe.</p>
-        <img src="https://live.staticflickr.com/65535/51234567890_12ab34cdef_b.jpg" alt="Lagoa de Itaipu ao entardecer">
-        <p>É point de stand-up paddle, caiaque e piqueniques onde o maior perigo é uma formiga roubando seu sanduíche. A restinga ao redor é protegida — lar de garças, capivaras e, segundo moradores, um jacaré que nunca aparece (mas todo mundo jura que viu).</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> A lagoa faz parte do Parque Estadual da Serra da Tiririca. Tradução: é área de preservação. Não jogue lixo. A natureza te agradece — e a multa também.
-        </div>
-        <p>Dica: Vá de bike. O caminho é lindo, e você queima as calorias do pastel que vai comer depois.</p>
-        <a href="#" class="btn-next" onclick="nextPage('itaipu')">Próximo →</a>
-        <p class="page-number">Página 8</p>
-    </section>
-
-    <!-- 7. Praia de Jurujuba -->
-    <section id="jurujuba" class="page">
-        <h2>7. Praia de Jurujuba</h2>
-        <p>Jurujuba é a praia dos pescadores, dos bares pé-na-areia e do cheiro de moqueca que te faz salivar a 100 metros. O mar é calmo, a vibe é roots, e o pôr do sol é de tirar o fôlego — e a razão.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Praia_de_Jurujuba_-_Niter%C3%B3i.jpg/1280px-Praia_de_Jurujuba_-_Niter%C3%B3i.jpg" alt="Barcos ancorados em Jurujuba">
-        <p>Antigamente, era ponto de saveiros que traziam peixe fresco pro Rio. Hoje, os barcos ainda estão lá, mas agora dividem espaço com iates de playboys e caiaques de hipsters.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> O nome “Jurujuba” vem do tupi e significa “lugar de muitas jurus” (um tipo de peixe). Tradução: aqui o peixe é rei. E você é o súdito que paga a conta.
-        </div>
-        <p>Dica: Experimente a moqueca do Bar do Meio. Peça com pirão. E reze pra não chover — o telhado é de confiança.</p>
-        <a href="#" class="btn-next" onclick="nextPage('jurujuba')">Próximo →</a>
-        <p class="page-number">Página 9</p>
-    </section>
-
-    <!-- 8. Teatro Popular Oscar Niemeyer -->
-    <section id="teatro" class="page">
-        <h2>8. Teatro Popular Oscar Niemeyer</h2>
-        <p>O Teatro Popular parece uma concha acústica que resolveu virar prédio. Projetado por Niemeyer (de novo ele!), tem capacidade para 2.400 pessoas sentadas — ou 3.000 em pé, se for show de pagode.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Teatro_Popular_de_Niter%C3%B3i.jpg/1280px-Teatro_Popular_de_Niter%C3%B3i.jpg" alt="Fachada curva do Teatro Popular">
-        <p>Inaugurado em 2007, já recebeu de ópera a stand-up comedy. A acústica é tão boa que até sussurro vira grito. E a vista do Caminho Niemeyer (o complexo ao redor) é um bônus que ninguém pediu, mas todo mundo ama.</p>
-        <div class="fact-box">
-            <strong>Curiosidade:</strong> O teatro foi construído em tempo recorde: 11 meses. Niemeyer tinha 99 anos. Moral: idade é só número quando você é gênio.
-        </div>
-        <p>Dica: Chegue cedo. O estacionamento é uma aventura à parte.</p>
-        <a href="#" class="btn-next" onclick="nextPage('teatro')">Próximo →</a>
-        <p class="page-number">Página 10</p>
-    </section>
-
-    <!-- 9. Pedra de Itapuca -->
-    <section id="pedra" class="page">
-        <h2>9. Pedra de Itapuca</h2>
-        <p>A Pedra de Itapuca é uma formação rochosa que parece ter sido esculpida por um gigante com preguiça. Fica na Praia de Itacoatiara e é point de escaladores, fotógrafos e casais que querem parecer aventureiros no Instagram.</p>
-        <img src="https://live.staticflickr.com/65535/48123456789_90ab12cd34_b.jpg" alt="Pedra de Itapuca ao am
+<script>
+    // Gerenciador de Cookies
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elementos DOM
+        const cookieBanner = document.getElementById('cookieBanner');
+        const cookieModal = document.getElementById('cookieModal');
+        const acceptBtn = document.getElementById('acceptCookies');
+        const rejectBtn = document.getElementById('rejectCookies');
+        const customizeBtn = document.getElementById('customizeCookies');
+        const saveBtn = document.getElementById('savePreferences');
+        const closeBtn = document.getElementById('closeModal');
+        
+        // Verificar se já existe uma preferência salva
+        if (!getCookiePreference()) {
+            // Mostrar banner após um pequeno delay
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1000);
+        }
+        
+        // Event Listeners
+        acceptBtn.addEventListener('click', acceptAllCookies);
+        rejectBtn.addEventListener('click', rejectAllCookies);
+        customizeBtn.addEventListener('click', showModal);
+        saveBtn.addEventListener('click', saveCustomPreferences);
+        closeBtn.addEventListener('click', hideModal);
+        
+        // Fechar modal clicando fora
+        cookieModal.addEventListener('click', function(e) {
+            if (e.target === cookieModal) {
+                hideModal();
+            }
+        });
+        
+        // Funções
+        function showBanner() {
+            cookieBanner.classList.add('show');
+        }
+        
+        function hideBanner() {
+            cookieBanner.classList.remove('show');
+        }
+        
+        function showModal() {
+            cookieModal.classList.add('show');
+        }
+        
+        function hideModal() {
+            cookieModal.classList.remove('show');
+        }
+        
+        function acceptAllCookies() {
+            const preferences = {
+                necessary: true,
+                analytics: true,
+                marketing: true,
+                timestamp: new Date().toISOString()
+            };
+            setCookiePreference(preferences);
+            hideBanner();
+            executeCookies(preferences);
+            showConfirmation('Preferências de cookies salvas com sucesso!');
+        }
+        
+        function rejectAllCookies() {
+            const preferences = {
+                necessary: true, // Cookies necessários sempre ativos
+                analytics: false,
+                marketing: false,
+                timestamp: new Date().toISOString()
+            };
+            setCookiePreference(preferences);
+            hideBanner();
+            executeCookies(preferences);
+            showConfirmation('Cookies não essenciais foram desativados.');
+        }
+        
+        function saveCustomPreferences() {
+            const preferences = {
+                necessary: true, // Sempre verdadeiro
+                analytics: document.getElementById('analyticsCookies').checked,
+                marketing: document.getElementById('marketingCookies').checked,
+                timestamp: new Date().toISOString()
+            };
+            setCookiePreference(preferences);
+            hideModal();
+            hideBanner();
+            executeCookies(preferences);
+            showConfirmation('Suas preferências de cookies foram salvas.');
+        }
+        
+        function setCookiePreference(preferences) {
+            // Salvar por 1 ano
+            const expiryDate = new Date();
+            expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+            
+            document.cookie = `cookiePreferences=${JSON.stringify(preferences)}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
+        }
+        
+        function getCookiePreference() {
+            const name = 'cookiePreferences=';
+            const cookies = document.cookie.split(';');
+            
+            for (let cookie of cookies) {
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) === 0) {
+                    return JSON.parse(cookie.substring(name.length, cookie.length));
+                }
+            }
+            return null;
+        }
+        
+        function executeCookies(preferences) {
+            console.log('Executando cookies com preferências:', preferences);
+            
+            // Cookies necessários (sempre executados)
+            executeNecessaryCookies();
+            
+            // Cookies analíticos
+            if (preferences.analytics) {
+                executeAnalyticsCookies();
+            }
+            
+            // Cookies de marketing
+            if (preferences.marketing) {
+                executeMarketingCookies();
+            }
+        }
+        
+        function executeNecessaryCookies() {
+            // Cookies essenciais para o funcionamento do site
+            console.log('Cookies necessários ativados');
+            // Adicione aqui qualquer código essencial para o funcionamento do site
+        }
+        
+        function executeAnalyticsCookies() {
+            // Google Analytics, Hotjar, etc.
+            console.log('Cookies analíticos ativados');
+            // Adicione aqui o código do Google Analytics ou outras ferramentas
+            // Exemplo: gtag('config', 'GA_MEASUREMENT_ID');
+        }
+        
+        function executeMarketingCookies() {
+            // Facebook Pixel, Google Ads, etc.
+            console.log('Cookies de marketing ativados');
+            // Adicione aqui os pixels de marketing
+        }
+        
+        function showConfirmation(message) {
+            // Criar um elemento de confirmação temporário
+            const confirmation = document.createElement('div');
+            confirmation.textContent = message;
+            confirmation.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #27ae60;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 10002;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                animation: slideInRight 0.3s ease-out;
+            `;
+            
+            document.body.appendChild(confirmation);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                confirmation.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => {
+                    document.body.removeChild(confirmation);
+                }, 300);
+            }, 3000);
+            
+            // Adicionar estilos de animação se não existirem
+            if (!document.querySelector('#confirmation-styles')) {
+                const style = document.createElement('style');
+                style.id = 'confirmation-styles';
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOutRight {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+    });
+</script>
+</body>
+</html>
