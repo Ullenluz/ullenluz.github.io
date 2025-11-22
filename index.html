@@ -701,4 +701,1517 @@
         }
         
         .contact-icon {
-            margin-r
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-link:hover, .social-link:focus {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+            outline: none;
+        }
+        
+        /* ========== MODAL STYLES ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--text);
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover, .modal-close:focus {
+            color: var(--secondary);
+            background-color: rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--white);
+            color: var(--text);
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 82, 118, 0.2);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .tour-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--light);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .tour-item button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .tour-item button:hover, .tour-item button:focus {
+            background-color: #b8941f;
+            outline: none;
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        /* ========== LOADING ANIMATION ========== */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ========== NOTIFICATION STYLES ========== */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            z-index: 1100;
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: #e74c3c;
+        }
+        
+        /* ========== SKIP LINK ========== */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 1001;
+            text-decoration: none;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* ========== RESPONSIVENESS ========== */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .video-player {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .video-player {
+                height: 300px;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-150%);
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
+            
+            .language-selector {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .video-player {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link" data-translate="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar" aria-label="Main navigation">
+                <div class="logo">Ullen <span>Luz</span></div>
+                <ul class="nav-links">
+                    <li><a href="#tours" data-translate="nav-tours">Exclusive Experiences</a></li>
+                    <li><a href="#videos" data-translate="nav-videos">Premium Content</a></li>
+                    <li><a href="#gallery" data-translate="nav-gallery">Gallery</a></li>
+                    <li><a href="#about" data-translate="nav-about">About</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">VIP Contact</a></li>
+                    <li class="language-selector">
+                        <button class="language-btn" aria-expanded="false">
+                            <i class="fas fa-globe"></i>
+                            <span class="current-language">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="language-options">
+                            <button class="language-option active" data-lang="en">
+                                <span>🇺🇸 English</span>
+                            </button>
+                            <button class="language-option" data-lang="fr">
+                                <span>🇫🇷 Français</span>
+                            </button>
+                            <button class="language-option" data-lang="pt">
+                                <span>🇧🇷 Português</span>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <button class="mobile-menu" aria-label="Open menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="main-content">
+        <div class="container">
+            <div class="hero-content">
+                <div class="vip-badge" data-translate="vip-badge">VIP Experience</div>
+                <h1 data-translate="hero-title">Ullen Luz</h1>
+                <p data-translate="hero-subtitle">Actor and Presenter specialized in <strong>exclusive tourism experiences</strong></p>
+                <p data-translate="hero-description">Discover Rio de Janeiro through personalized itineraries and <strong>privileged access</strong> to the most coveted destinations</p>
+                <a href="#tours" class="btn btn-vip" data-translate="hero-cta">Discover Experiences</a>
+            </div>
+        </div>
+        <button class="scroll-down" aria-label="Scroll down" data-translate="scroll-down">↓</button>
+    </section>
+
+    <!-- Tours Section -->
+    <section id="tours" class="tours">
+        <div class="container">
+            <h2 data-translate="tours-title">Exclusive Experiences</h2>
+            
+            <div class="exclusive-offer">
+                <h3 data-translate="limited-offer-title">🌟 Limited Experience</h3>
+                <p data-translate="limited-offer-text">Only <strong>2 groups per day</strong> to ensure maximum personalization and privacy</p>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--secondary);" data-translate="premium-itineraries">Our Premium Itineraries</h3>
+            <div class="cards-container" id="tours-container">
+                <!-- Tours will be populated by JavaScript -->
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">👑</div>
+                    <h4 data-translate="feature1-title">Personalized Service</h4>
+                    <p data-translate="feature1-text">Each experience is carefully planned according to your specific preferences and interests.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚗</div>
+                    <h4 data-translate="feature2-title">Private Transportation</h4>
+                    <p data-translate="feature2-text">Transportation in luxury vehicles with private driver for maximum comfort and privacy.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h4 data-translate="feature3-title">Exclusive Access</h4>
+                    <p data-translate="feature3-text">Priority entry and access to restricted areas at main tourist attractions.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <h4 data-translate="feature4-title">Proven Excellence</h4>
+                    <p data-translate="feature4-text">Rated 4.9/5 by discerning clients who value quality and exclusivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos" class="videos">
+        <div class="container">
+            <h2 data-translate="videos-title">Exclusive Content</h2>
+            <div class="videos-grid">
+                <div class="video-item">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/wcR70cJQ_cs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Exploring Niterói" loading="lazy"></iframe>
+                    <div class="video-info">
+                        <h3 data-translate="video1-title">Exclusive Niterói</h3>
+                        <p data-translate="video1-desc">Discover the hidden treasures of Niterói through a privileged perspective</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/HWFiQZL2i24" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Local Culture" loading="lazy"></iframe>
+                    <div class="video-info">
+                        <h3 data-translate="video2-title">Culture with Depth</h3>
+                        <p data-translate="video2-desc">Authentic immersion in the traditions and history of Rio de Janeiro</p>
+                    </div>
+                </div>
+                <div class="video-item">
+                    <iframe class="video-player" src="https://www.youtube.com/embed/BR7GBL7IrV4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Gastronomy" loading="lazy"></iframe>
+                    <div class="video-info">
+                        <h3 data-translate="video3-title">Selected Gastronomy</h3>
+                        <p data-translate="video3-desc">The most refined flavors of carioca cuisine in exclusive locations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 data-translate="gallery-title">Exclusive Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg" alt="Christ the Redeemer - Privileged view" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg" alt="Sugarloaf Mountain - Exclusive experience" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Copacabana%20Beach.jpg" alt="Copacabana Beach - VIP access" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Selaronstairs.jpeg" alt="Selarón Steps - Unique perspective" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Arcosdalapa.jpg" alt="Lapa Arches - Cultural experience" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Museu_do_Amanh%C3%A3.jpg" alt="Museum of Tomorrow - Private tour" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Icara%C3%AD%20Beach.jpg" alt="Icaraí Beach - Exclusive view" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Ilha-de-Paqueta.jpg" alt="Paquetá Island - Private refuge" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/Contemporary%20Art%20Museum%20(MAC).jpg" alt="Contemporary Art Museum - Privileged access" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tripdecoder.github.io/cost%C3%A3o.jpg" alt="Itacoatiara Costão Trail - Exclusive experience" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 data-translate="about-title">About Ullen Luz</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="Foto principal 1.jpg" alt="Ullen Luz - Actor and Presenter specialized in exclusive experiences" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <p data-translate="about-text1">Ullen Luz is a recognized actor and presenter with specialization in <strong>high-standard tourism content</strong>. His unique approach combines cinematic narrative with <strong>privileged access</strong> to the most coveted destinations in Rio de Janeiro.</p>
+                    <p data-translate="about-text2">With years of experience in the entertainment and premium tourism industry, Ullen has developed an exclusive methodology that transforms tourist visits into <strong>memorable and personalized experiences</strong> for demanding clients.</p>
+                    <p data-translate="about-text3">His network of contacts and deep knowledge of local culture allow him to offer <strong>access to locations and experiences unavailable to the general public</strong>, creating unique itineraries that reflect the style and interests of each client.</p>
+                    <p data-translate="about-text4"><strong>Exclusivity, personalization and excellence</strong> are the pillars of every experience created by Ullen Luz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="modal-close" onclick="BookingModal.close()" aria-label="Close modal">×</button>
+            <h3 id="modal-title" data-translate="modal-title">Request Personalized Experience</h3>
+            <div id="tour-list"></div>
+            <button onclick="BookingModal.showAvailableTours()" class="btn" style="background-color: var(--primary);" data-translate="modal-add-experience">Add Another Experience</button>
+            <div id="available-tours">
+                <h4 data-translate="modal-select-tours">Select additional experiences:</h4>
+                <ul id="tours-available"></ul>
+                <button onclick="BookingModal.confirmSelection()" class="btn" style="background-color: var(--primary);" data-translate="modal-confirm-selection">Confirm Selection</button>
+            </div>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name" data-translate="modal-form-name">Full Name:</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Your full name">
+                    <div class="error-message" id="name-error">Please enter your full name</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-translate="modal-form-phone">Contact Phone:</label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="+55 (21) 99999-9999">
+                    <div class="error-message" id="phone-error">Please enter a valid phone number</div>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-translate="modal-form-email">Email:</label>
+                    <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                    <div class="error-message" id="email-error">Please enter a valid email</div>
+                </div>
+                <div class="form-group">
+                    <label for="date" data-translate="modal-form-date">Preferred Date:</label>
+                    <input type="date" id="date" class="form-control" required min="">
+                    <div class="error-message" id="date-error">Please select a valid date</div>
+                </div>
+                <div class="form-group">
+                    <label for="people" data-translate="modal-form-people">Number of Guests:</label>
+                    <input type="number" id="people" min="1" max="8" class="form-control" required placeholder="Number of people (max. 8)">
+                    <div class="error-message" id="people-error">Please enter a valid number of people (1-8)</div>
+                </div>
+                <div class="form-group">
+                    <label for="special-requests" data-translate="modal-form-requests">Preferences and Special Requirements:</label>
+                    <textarea id="special-requests" class="form-control" placeholder="Specific interests, dietary restrictions, special needs..."></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="button" onclick="BookingModal.submitForm()" class="btn btn-vip" id="submit-btn">
+                        <span id="submit-text" data-translate="modal-form-cta">Request Personalized Proposal</span>
+                        <span id="submit-loading" class="loading" style="display: none;"></span>
+                    </button>
+                    <button type="button" onclick="BookingModal.close()" class="btn" style="background-color: #95a5a6;" data-translate="modal-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 data-translate="contact-title">Exclusive Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h3 data-translate="contact-email">Direct Email</h3>
+                            <p><a href="mailto:ullenluz@tuta.io">ullenluz@tuta.io</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h3 data-translate="contact-whatsapp">Exclusive WhatsApp</h3>
+                            <p><a href="https://wa.me/5521990455492" target="_blank">(21) 99045-5492</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/tripdecoder/" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@mobileculture?_r=1&_t=ZS-91Eyx4V213g" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name" data-translate="contact-form-name">Name:</label>
+                        <input type="text" id="contact-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" data-translate="contact-form-email">Email:</label>
+                        <input type="email" id="contact-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message" data-translate="contact-form-message">Message:</label>
+                        <textarea id="contact-message" class="form-control" rows="5" required data-translate="contact-form-placeholder" placeholder="Describe your interest in our exclusive experiences..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-vip" data-translate="contact-form-cta">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-translate="footer-text">&copy; 2023 Ullen Luz. Exclusive Tourism Experiences. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Element -->
+    <div id="notification" class="notification" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+        // ========== LANGUAGE MANAGEMENT ==========
+        const translations = {
+            en: {
+                // Navigation
+                "nav-tours": "Exclusive Experiences",
+                "nav-videos": "Premium Content",
+                "nav-gallery": "Gallery",
+                "nav-about": "About",
+                "nav-contact": "VIP Contact",
+                
+                // Hero Section
+                "vip-badge": "VIP Experience",
+                "hero-title": "Ullen Luz",
+                "hero-subtitle": "Actor and Presenter specialized in <strong>exclusive tourism experiences</strong>",
+                "hero-description": "Discover Rio de Janeiro through personalized itineraries and <strong>privileged access</strong> to the most coveted destinations",
+                "hero-cta": "Discover Experiences",
+                
+                // Tours Section
+                "tours-title": "Exclusive Experiences",
+                "limited-offer-title": "🌟 Limited Experience",
+                "limited-offer-text": "Only <strong>2 groups per day</strong> to ensure maximum personalization and privacy",
+                "premium-itineraries": "Our Premium Itineraries",
+                
+                // Features
+                "feature1-title": "Personalized Service",
+                "feature1-text": "Each experience is carefully planned according to your specific preferences and interests.",
+                "feature2-title": "Private Transportation",
+                "feature2-text": "Transportation in luxury vehicles with private driver for maximum comfort and privacy.",
+                "feature3-title": "Exclusive Access",
+                "feature3-text": "Priority entry and access to restricted areas at main tourist attractions.",
+                "feature4-title": "Proven Excellence",
+                "feature4-text": "Rated 4.9/5 by discerning clients who value quality and exclusivity.",
+                
+                // Videos Section
+                "videos-title": "Exclusive Content",
+                "video1-title": "Exclusive Niterói",
+                "video1-desc": "Discover the hidden treasures of Niterói through a privileged perspective",
+                "video2-title": "Culture with Depth",
+                "video2-desc": "Authentic immersion in the traditions and history of Rio de Janeiro",
+                "video3-title": "Selected Gastronomy",
+                "video3-desc": "The most refined flavors of carioca cuisine in exclusive locations",
+                
+                // Gallery Section
+                "gallery-title": "Exclusive Gallery",
+                
+                // About Section
+                "about-title": "About Ullen Luz",
+                "about-text1": "Ullen Luz is a recognized actor and presenter with specialization in <strong>high-standard tourism content</strong>. His unique approach combines cinematic narrative with <strong>privileged access</strong> to the most coveted destinations in Rio de Janeiro.",
+                "about-text2": "With years of experience in the entertainment and premium tourism industry, Ullen has developed an exclusive methodology that transforms tourist visits into <strong>memorable and personalized experiences</strong> for demanding clients.",
+                "about-text3": "His network of contacts and deep knowledge of local culture allow him to offer <strong>access to locations and experiences unavailable to the general public</strong>, creating unique itineraries that reflect the style and interests of each client.",
+                "about-text4": "<strong>Exclusivity, personalization and excellence</strong> are the pillars of every experience created by Ullen Luz.",
+                
+                // Contact Section
+                "contact-title": "Exclusive Contact",
+                "contact-email": "Direct Email",
+                "contact-whatsapp": "Exclusive WhatsApp",
+                "contact-form-name": "Name:",
+                "contact-form-email": "Email:",
+                "contact-form-message": "Message:",
+                "contact-form-placeholder": "Describe your interest in our exclusive experiences...",
+                "contact-form-cta": "Send Message",
+                
+                // Modal
+                "modal-title": "Request Personalized Experience",
+                "modal-add-experience": "Add Another Experience",
+                "modal-select-tours": "Select additional experiences:",
+                "modal-confirm-selection": "Confirm Selection",
+                "modal-form-name": "Full Name:",
+                "modal-form-phone": "Contact Phone:",
+                "modal-form-email": "Email:",
+                "modal-form-date": "Preferred Date:",
+                "modal-form-people": "Number of Guests:",
+                "modal-form-requests": "Preferences and Special Requirements:",
+                "modal-form-cta": "Request Personalized Proposal",
+                "modal-cancel": "Cancel",
+                
+                // Footer
+                "footer-text": "&copy; 2023 Ullen Luz. Exclusive Tourism Experiences. All rights reserved.",
+                
+                // Notifications
+                "notification-tour-added": "experience(s) added to your request",
+                "notification-tour-removed": "removed from your request",
+                "notification-select-tour": "Please select at least one experience to add.",
+                "notification-form-error": "Please fill all required fields correctly and select at least one experience.",
+                "notification-people-error": "Please enter a valid number of people (1-8).",
+                "notification-success": "Request sent successfully! You will be redirected to WhatsApp.",
+                "notification-contact-success": "Message sent successfully! We will contact you soon.",
+                
+                // Skip link
+                "skip-link": "Skip to main content",
+                
+                // Scroll down
+                "scroll-down": "Scroll down"
+            },
+            fr: {
+                // Navigation
+                "nav-tours": "Expériences Exclusives",
+                "nav-videos": "Contenu Premium",
+                "nav-gallery": "Galerie",
+                "nav-about": "À Propos",
+                "nav-contact": "Contact VIP",
+                
+                // Hero Section
+                "vip-badge": "Expérience VIP",
+                "hero-title": "Ullen Luz",
+                "hero-subtitle": "Acteur et Présentateur spécialisé dans les <strong>expériences touristiques exclusives</strong>",
+                "hero-description": "Découvrez Rio de Janeiro grâce à des itinéraires personnalisés et un <strong>accès privilégié</strong> aux destinations les plus convoitées",
+                "hero-cta": "Découvrir les Expériences",
+                
+                // Tours Section
+                "tours-title": "Expériences Exclusives",
+                "limited-offer-title": "🌟 Expérience Limitée",
+                "limited-offer-text": "Seulement <strong>2 groupes par jour</strong> pour garantir une personnalisation et une confidentialité maximales",
+                "premium-itineraries": "Nos Itinéraires Premium",
+                
+                // Features
+                "feature1-title": "Service Personnalisé",
+                "feature1-text": "Chaque expérience est soigneusement planifiée selon vos préférences et intérêts spécifiques.",
+                "feature2-title": "Transport Privé",
+                "feature2-text": "Transport en véhicules de luxe avec chauffeur privé pour un confort et une intimité maximaux.",
+                "feature3-title": "Accès Exclusif",
+                "feature3-text": "Entrée prioritaire et accès aux zones restreintes des principales attractions touristiques.",
+                "feature4-title": "Excellence Éprouvée",
+                "feature4-text": "Noté 4,9/5 par des clients exigeants qui valorisent la qualité et l'exclusivité.",
+                
+                // Videos Section
+                "videos-title": "Contenu Exclusif",
+                "video1-title": "Niterói Exclusive",
+                "video1-desc": "Découvrez les trésors cachés de Niterói à travers une perspective privilégiée",
+                "video2-title": "Culture en Profondeur",
+                "video2-desc": "Immersion authentique dans les traditions et l'histoire de Rio de Janeiro",
+                "video3-title": "Gastronomie Sélectionnée",
+                "video3-desc": "Les saveurs les plus raffinées de la cuisine carioca dans des lieux exclusifs",
+                
+                // Gallery Section
+                "gallery-title": "Galerie Exclusive",
+                
+                // About Section
+                "about-title": "À Propos d'Ullen Luz",
+                "about-text1": "Ullen Luz est un acteur et présentateur reconnu spécialisé dans le <strong>contenu touristique haut de gamme</strong>. Son approche unique combine la narration cinématographique avec un <strong>accès privilégié</strong> aux destinations les plus convoitées de Rio de Janeiro.",
+                "about-text2": "Avec des années d'expérience dans l'industrie du divertissement et du tourisme premium, Ullen a développé une méthodologie exclusive qui transforme les visites touristiques en <strong>expériences mémorables et personnalisées</strong> pour les clients exigeants.",
+                "about-text3": "Son réseau de contacts et sa connaissance approfondie de la culture locale lui permettent d'offrir un <strong>accès à des lieux et expériences indisponibles au grand public</strong>, créant des itinéraires uniques qui reflètent le style et les intérêts de chaque client.",
+                "about-text4": "<strong>Exclusivité, personnalisation et excellence</strong> sont les piliers de chaque expérience créée par Ullen Luz.",
+                
+                // Contact Section
+                "contact-title": "Contact Exclusif",
+                "contact-email": "Email Direct",
+                "contact-whatsapp": "WhatsApp Exclusif",
+                "contact-form-name": "Nom :",
+                "contact-form-email": "Email :",
+                "contact-form-message": "Message :",
+                "contact-form-placeholder": "Décrivez votre intérêt pour nos expériences exclusives...",
+                "contact-form-cta": "Envoyer le Message",
+                
+                // Modal
+                "modal-title": "Demander une Expérience Personnalisée",
+                "modal-add-experience": "Ajouter une Autre Expérience",
+                "modal-select-tours": "Sélectionnez des expériences supplémentaires :",
+                "modal-confirm-selection": "Confirmer la Sélection",
+                "modal-form-name": "Nom Complet :",
+                "modal-form-phone": "Téléphone de Contact :",
+                "modal-form-email": "Email :",
+                "modal-form-date": "Date Préférée :",
+                "modal-form-people": "Nombre d'Invitiés :",
+                "modal-form-requests": "Préférences et Exigences Spéciales :",
+                "modal-form-cta": "Demander une Proposition Personnalisée",
+                "modal-cancel": "Annuler",
+                
+                // Footer
+                "footer-text": "&copy; 2023 Ullen Luz. Expériences Touristiques Exclusives. Tous droits réservés.",
+                
+                // Notifications
+                "notification-tour-added": "expérience(s) ajoutée(s) à votre demande",
+                "notification-tour-removed": "supprimé de votre demande",
+                "notification-select-tour": "Veuillez sélectionner au moins une expérience à ajouter.",
+                "notification-form-error": "Veuillez remplir tous les champs obligatoires correctement et sélectionner au moins une expérience.",
+                "notification-people-error": "Veuillez entrer un nombre valide de personnes (1-8).",
+                "notification-success": "Demande envoyée avec succès ! Vous serez redirigé vers WhatsApp.",
+                "notification-contact-success": "Message envoyé avec succès ! Nous vous contacterons bientôt.",
+                
+                // Skip link
+                "skip-link": "Aller au contenu principal",
+                
+                // Scroll down
+                "scroll-down": "Descendre"
+            },
+            pt: {
+                // Navigation
+                "nav-tours": "Experiências Exclusivas",
+                "nav-videos": "Conteúdo Premium",
+                "nav-gallery": "Galeria",
+                "nav-about": "Sobre",
+                "nav-contact": "Contato VIP",
+                
+                // Hero Section
+                "vip-badge": "Experiência VIP",
+                "hero-title": "Ullen Luz",
+                "hero-subtitle": "Ator e Apresentador especializado em <strong>experiências turísticas exclusivas</strong>",
+                "hero-description": "Descubra o Rio de Janeiro através de roteiros personalizados e <strong>acesso privilegiado</strong> aos destinos mais cobiçados",
+                "hero-cta": "Descobrir Experiências",
+                
+                // Tours Section
+                "tours-title": "Experiências Exclusivas",
+                "limited-offer-title": "🌟 Experiência Limitada",
+                "limited-offer-text": "Apenas <strong>2 grupos por dia</strong> para garantir máxima personalização e privacidade",
+                "premium-itineraries": "Nossos Roteiros Premium",
+                
+                // Features
+                "feature1-title": "Serviço Personalizado",
+                "feature1-text": "Cada experiência é cuidadosamente planejada de acordo com suas preferências e interesses específicos.",
+                "feature2-title": "Transporte Privativo",
+                "feature2-text": "Deslocamento em veículos de luxo com motorista particular para máximo conforto e privacidade.",
+                "feature3-title": "Acesso Exclusivo",
+                "feature3-text": "Entrada prioritária e acesso a áreas restritas nos principais pontos turísticos.",
+                "feature4-title": "Excelência Comprovada",
+                "feature4-text": "Avaliado com 4.9/5 por clientes exigentes que valorizam qualidade e exclusividade.",
+                
+                // Videos Section
+                "videos-title": "Conteúdo Exclusivo",
+                "video1-title": "Niterói Exclusiva",
+                "video1-desc": "Descubra os tesouros escondidos de Niterói através de uma perspectiva privilegiada",
+                "video2-title": "Cultura com Profundidade",
+                "video2-desc": "Imersão autêntica nas tradições e história do Rio de Janeiro",
+                "video3-title": "Gastronomia Selecionada",
+                "video3-desc": "Os sabores mais refinados da culinária carioca em locais exclusivos",
+                
+                // Gallery Section
+                "gallery-title": "Galeria Exclusiva",
+                
+                // About Section
+                "about-title": "Sobre Ullen Luz",
+                "about-text1": "Ullen Luz é um reconhecido ator e apresentador com especialização em <strong>conteúdo turístico de alto padrão</strong>. Sua abordagem única combina narrativa cinematográfica com <strong>acesso privilegiado</strong> aos destinos mais cobiçados do Rio de Janeiro.",
+                "about-text2": "Com anos de experiência no setor de entretenimento e turismo premium, Ullen desenvolveu uma metodologia exclusiva que transforma visitas turísticas em <strong>experiências memoráveis e personalizadas</strong> para clientes exigentes.",
+                "about-text3": "Sua rede de contatos e conhecimento profundo da cultura local permitem oferecer <strong>acesso a locais e vivências indisponíveis ao público geral</strong>, criando roteiros únicos que refletem o estilo e interesses de cada cliente.",
+                "about-text4": "<strong>Exclusividade, personalização e excelência</strong> são os pilares de cada experiência criada por Ullen Luz.",
+                
+                // Contact Section
+                "contact-title": "Contato Exclusivo",
+                "contact-email": "E-mail Direto",
+                "contact-whatsapp": "WhatsApp Exclusivo",
+                "contact-form-name": "Nome:",
+                "contact-form-email": "Email:",
+                "contact-form-message": "Mensagem:",
+                "contact-form-placeholder": "Descreva seu interesse em nossas experiências exclusivas...",
+                "contact-form-cta": "Enviar Mensagem",
+                
+                // Modal
+                "modal-title": "Solicitar Experiência Personalizada",
+                "modal-add-experience": "Adicionar Outra Experiência",
+                "modal-select-tours": "Selecione experiências adicionais:",
+                "modal-confirm-selection": "Confirmar Seleção",
+                "modal-form-name": "Nome Completo:",
+                "modal-form-phone": "Telefone para Contato:",
+                "modal-form-email": "Email:",
+                "modal-form-date": "Data Preferida:",
+                "modal-form-people": "Número de Convidados:",
+                "modal-form-requests": "Preferências e Requisitos Especiais:",
+                "modal-form-cta": "Solicitar Proposta Personalizada",
+                "modal-cancel": "Cancelar",
+                
+                // Footer
+                "footer-text": "&copy; 2023 Ullen Luz. Experiências Turísticas Exclusivas. Todos os direitos reservados.",
+                
+                // Notifications
+                "notification-tour-added": "experiência(s) adicionada(s) à sua solicitação",
+                "notification-tour-removed": "removido da sua solicitação",
+                "notification-select-tour": "Por favor, selecione pelo menos uma experiência para adicionar.",
+                "notification-form-error": "Por favor, preencha todos os campos obrigatórios corretamente e selecione pelo menos uma experiência.",
+                "notification-people-error": "Por favor, insira um número válido de pessoas (1-8).",
+                "notification-success": "Solicitação enviada com sucesso! Você será redirecionado para o WhatsApp.",
+                "notification-contact-success": "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+                
+                // Skip link
+                "skip-link": "Pular para o conteúdo principal",
+                
+                // Scroll down
+                "scroll-down": "Role para baixo"
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language button text
+            document.querySelector('.current-language').textContent = lang.toUpperCase();
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update page title and meta description for SEO
+            if (lang === 'en') {
+                document.title = "Ullen Luz - Exclusive Tourism Experiences in Rio de Janeiro | Actor and Presenter";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz offers exclusive and personalized tourism experiences in Rio de Janeiro and Niterói. VIP tours with privileged access and custom itineraries for discerning clients.");
+            } else if (lang === 'fr') {
+                document.title = "Ullen Luz - Expériences Touristiques Exclusives à Rio de Janeiro | Acteur et Présentateur";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz propose des expériences touristiques exclusives et personnalisées à Rio de Janeiro et Niterói. Visites VIP avec accès privilégié et itinéraires sur mesure pour clients exigeants.");
+            } else if (lang === 'pt') {
+                document.title = "Ullen Luz - Experiências Turísticas Exclusivas no Rio de Janeiro | Ator e Apresentador";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz oferece experiências turísticas exclusivas e personalizadas no Rio de Janeiro e Niterói. Tours VIP com acesso privilegiado e roteiros sob medida para clientes exigentes.");
+            }
+            
+            // Close language selector
+            document.querySelector('.language-options').classList.remove('show');
+            document.querySelector('.language-btn').setAttribute('aria-expanded', 'false');
+            
+            // Update active state in language selector
+            document.querySelectorAll('.language-option').forEach(option => {
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            
+            // Update tours content
+            BookingModal.populateTours();
+        }
+
+        // ========== TOUR DATA ==========
+        const tourData = [
+            {
+                name: {
+                    en: "Christ the Redeemer VIP",
+                    fr: "Christ Rédempteur VIP",
+                    pt: "Cristo Redentor VIP"
+                },
+                description: {
+                    en: "Privileged access to Corcovado with exclusive schedule and personalized guided visit.",
+                    fr: "Accès privilégié au Corcovado avec horaire exclusif et visite guidée personnalisée.",
+                    pt: "Acesso privilegiado ao Corcovado com horário exclusivo e visita guiada personalizada."
+                },
+                image: "https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg",
+                alt: {
+                    en: "Christ the Redeemer - VIP Experience",
+                    fr: "Christ Rédempteur - Expérience VIP",
+                    pt: "Cristo Redentor - Experiência VIP"
+                },
+                duration: {
+                    en: "4 hours",
+                    fr: "4 heures",
+                    pt: "4 horas"
+                },
+                includes: {
+                    en: ["Private transport", "Priority access", "Specialized guide", "Exclusive schedule"],
+                    fr: ["Transport privé", "Accès prioritaire", "Guide spécialisé", "Horaire exclusif"],
+                    pt: ["Transporte privativo", "Acesso prioritário", "Guia especializado", "Horário exclusivo"]
+                },
+                exclusive: true,
+                limited: true
+            },
+            {
+                name: {
+                    en: "Sugarloaf Mountain Premium",
+                    fr: "Pain de Sucre Premium",
+                    pt: "Pão de Açúcar Premium"
+                },
+                description: {
+                    en: "Exclusive experience on the cable car with reserved schedule and privileged views.",
+                    fr: "Expérience exclusive dans le téléphérique avec horaire réservé et vues privilégiées.",
+                    pt: "Experiência exclusiva no bondinho com horário reservado e vistas privilegiadas."
+                },
+                image: "https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg",
+                alt: {
+                    en: "Sugarloaf Mountain - Premium Experience",
+                    fr: "Pain de Sucre - Expérience Premium",
+                    pt: "Pão de Açúcar - Experiência Premium"
+                },
+                duration: {
+                    en: "3 hours",
+                    fr: "3 heures",
+                    pt: "3 horas"
+                },
+                includes: {
+                    en: ["VIP tickets", "Personalized guide", "Reserved schedule", "Exclusive photo opportunities"],
+                    fr: ["Billets VIP", "Guide personnalisé", "Horaire réservé", "Opportunités photo exclusives"],
+                    pt: ["Ingressos VIP", "Guia personalizado", "Horário reservado", "Oportunidades fotográficas exclusivas"]
+                },
+                exclusive: true,
+                limited: false
+            },
+            {
+                name: {
+                    en: "Copacabana Exclusive",
+                    fr: "Copacabana Exclusive",
+                    pt: "Copacabana Exclusiva"
+                },
+                description: {
+                    en: "Tour along the waterfront with stops at selected locations and refined gastronomic experiences.",
+                    fr: "Visite le long du front de mer avec arrêts dans des lieux sélectionnés et expériences gastronomiques raffinées.",
+                    pt: "Tour pela orla com paradas em locais selecionados e experiências gastronômicas refinadas."
+                },
+                image: "https://tripdecoder.github.io/Copacabana%20Beach.jpg",
+                alt: {
+                    en: "Copacabana Beach - Exclusive Tour",
+                    fr: "Plage de Copacabana - Tour Exclusif",
+                    pt: "Praia de Copacabana - Tour Exclusivo"
+                },
+                duration: {
+                    en: "3 hours",
+                    fr: "3 heures",
+                    pt: "3 horas"
+                },
+                includes: {
+                    en: ["Specialized guide", "Selected tastings", "Exclusive locations", "Private transport"],
+                    fr: ["Guide spécialisé", "Dégustations sélectionnées", "Lieux exclusifs", "Transport privé"],
+                    pt: ["Guia especializado", "Degustações selecionadas", "Locais exclusivos", "Transporte privativo"]
+                },
+                exclusive: true,
+                limited: true
+            }
+        ];
+
+        // ========== UTILITY FUNCTIONS ==========
+        const Utils = {
+            validatePhone: (phone) => {
+                const cleanNumber = phone.replace(/\D/g, '');
+                return cleanNumber.length >= 10 && cleanNumber.length <= 11;
+            },
+            
+            validateEmail: (email) => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            },
+            
+            formatDate: (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            },
+            
+            createCard: (item) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                let tags = '';
+                if (item.exclusive) {
+                    tags += '<div class="exclusive-tag">Exclusive</div>';
+                }
+                if (item.limited) {
+                    tags += '<div class="limited-tag">Limited Availability</div>';
+                }
+                
+                card.innerHTML = `
+                    ${tags}
+                    <div class="card-img-container">
+                        <img src="${item.image}" alt="${item.alt[currentLanguage]}" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>${item.name[currentLanguage]}</h3>
+                        <p>${item.description[currentLanguage]}</p>
+                        <div class="card-info">
+                            <p class="duration">⏱️ ${item.duration[currentLanguage]}</p>
+                            <button class="btn btn-vip" onclick="BookingModal.open('${item.name.en}')">Request Proposal</button>
+                        </div>
+                    </div>
+                `;
+                
+                return card;
+            },
+            
+            setMinDate: () => {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const yyyy = tomorrow.getFullYear();
+                const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const dd = String(tomorrow.getDate()).padStart(2, '0');
+                
+                return `${yyyy}-${mm}-${dd}`;
+            },
+            
+            showNotification: (message, type = 'success') => {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+        };
+
+        // ========== BOOKING MODAL ==========
+        const BookingModal = {
+            selectedTours: [],
+            
+            init: function() {
+                this.cacheDom();
+                this.bindEvents();
+                this.setMinBookingDate();
+                this.populateTours();
+            },
+            
+            cacheDom: function() {
+                this.modal = document.getElementById('booking-modal');
+                this.modalTitle = document.getElementById('modal-title');
+                this.tourList = document.getElementById('tour-list');
+                this.availableToursSection = document.getElementById('available-tours');
+                this.toursAvailableList = document.getElementById('tours-available');
+                this.bookingForm = document.getElementById('booking-form');
+                this.submitBtn = document.getElementById('submit-btn');
+                this.submitText = document.getElementById('submit-text');
+                this.submitLoading = document.getElementById('submit-loading');
+            },
+            
+            bindEvents: function() {
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.close();
+                    }
+                });
+                
+                // Set minimum date for booking
+                this.setMinBookingDate();
+                
+                // Add real-time validation
+                this.addFormValidation();
+            },
+            
+            addFormValidation: function() {
+                const nameInput = document.getElementById('name');
+                const phoneInput = document.getElementById('phone');
+                const emailInput = document.getElementById('email');
+                const dateInput = document.getElementById('date');
+                const peopleInput = document.getElementById('people');
+                
+                // Real-time validation
+                nameInput.addEventListener('blur', () => this.validateField(nameInput, 'name'));
+                phoneInput.addEventListener('blur', () => this.validateField(phoneInput, 'phone'));
+                emailInput.addEventListener('blur', () => this.validateField(emailInput, 'email'));
+                dateInput.addEventListener('blur', () => this.validateField(dateInput, 'date'));
+                peopleInput.addEventListener('blur', () => this.validateField(peopleInput, 'people'));
+            },
+            
+            validateField: function(input, fieldName) {
+                const errorElement = document.getElementById(`${fieldName}-error`);
+                let isValid = true;
+                
+                switch(fieldName) {
+                    case 'name':
+                        isValid = input.value.trim().length > 0;
+                        break;
+                    case 'phone':
+                        isValid = Utils.validatePhone(input.value);
+                        break;
+                    case 'email':
+                        isValid = Utils.validateEmail(input.value);
+                        break;
+                    case 'date':
+                        isValid = input.value && new Date(input.value) >= new Date(Utils.setMinDate());
+                        break;
+                    case 'people':
+                        isValid = input.value >= 1 && input.value <= 8;
+                        break;
+                }
+                
+                if (isValid) {
+                    input.style.borderColor = '#ddd';
+                    errorElement.style.display = 'none';
+                } else {
+                    input.style.borderColor = '#e74c3c';
+                    errorElement.style.display = 'block';
+                }
+                
+                return isValid;
+            },
+            
+            setMinBookingDate: function() {
+                const dateInput = document.getElementById('date');
+                if (dateInput) {
+                    dateInput.min = Utils.setMinDate();
+                }
+            },
+            
+            populateTours: function() {
+                const toursContainer = document.getElementById('tours-container');
+                toursContainer.innerHTML = '';
+                
+                tourData.forEach(tour => {
+                    toursContainer.appendChild(Utils.createCard(tour));
+                });
+            },
+            
+            open: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                
+                if (index === -1) {
+                    this.selectedTours.push(tourName);
+                } else {
+                    this.selectedTours.splice(index, 1);
+                }
+                
+                this.updateTourList();
+                this.modal.style.display = 'flex';
+                this.modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus on first form element for accessibility
+                setTimeout(() => {
+                    document.getElementById('name').focus();
+                }, 100);
+            },
+            
+            close: function() {
+                this.selectedTours = [];
+                this.modal.style.display = 'none';
+                this.modal.setAttribute('aria-hidden', 'true');
+                this.availableToursSection.style.display = 'none';
+                this.bookingForm.reset();
+                document.body.style.overflow = 'auto';
+            },
+            
+            showAvailableTours: function() {
+                this.toursAvailableList.innerHTML = '';
+                
+                const notSelectedTours = tourData.filter(tour => 
+                    !this.selectedTours.includes(tour.name.en)
+                );
+                
+                if (notSelectedTours.length === 0) {
+                    this.toursAvailableList.innerHTML = '<p style="text-align: center; color: #aaa;">All experiences are already selected</p>';
+                    return;
+                }
+                
+                notSelectedTours.forEach(tour => {
+                    const item = document.createElement('li');
+                    item.style.marginBottom = '10px';
+                    item.innerHTML = `
+                        <input type="checkbox" id="tour-${tour.name.en.replace(/\s+/g, '-')}" value="${tour.name.en}">
+                        <label for="tour-${tour.name.en.replace(/\s+/g, '-')}">
+                            ${tour.name[currentLanguage]} ${tour.limited ? '<span style="color:#e74c3c; font-size:0.8em;">(Limited Availability)</span>' : ''}
+                        </label>
+                    `;
+                    this.toursAvailableList.appendChild(item);
+                });
+                
+                this.availableToursSection.style.display = 'block';
+            },
+            
+            confirmSelection: function() {
+                const checkboxes = document.querySelectorAll('#tours-available input[type="checkbox"]');
+                let selectedCount = 0;
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const tour = tourData.find(t => t.name.en === checkbox.value);
+                        if (tour && !this.selectedTours.includes(tour.name.en)) {
+                            this.selectedTours.push(tour.name.en);
+                            selectedCount++;
+                        }
+                    }
+                });
+                
+                if (selectedCount > 0) {
+                    this.updateTourList();
+                    this.availableToursSection.style.display = 'none';
+                    Utils.showNotification(`${selectedCount} ${translations[currentLanguage]['notification-tour-added']}`);
+                } else {
+                    Utils.showNotification(translations[currentLanguage]['notification-select-tour'], 'error');
+                }
+            },
+            
+            removeTour: function(tourName) {
+                const index = this.selectedTours.indexOf(tourName);
+                if (index !== -1) {
+                    this.selectedTours.splice(index, 1);
+                    this.updateTourList();
+                    Utils.showNotification(`${tourName} ${translations[currentLanguage]['notification-tour-removed']}`);
+                }
+            },
+            
+            updateTourList: function() {
+                this.tourList.innerHTML = '';
+                
+                if (this.selectedTours.length === 0) {
+                    this.tourList.innerHTML = '<p style="text-align: center; color: #aaa; padding: 20px;">No experiences selected. Click "Add Another Experience" to browse options.</p>';
+                } else {
+                    this.selectedTours.forEach((tour) => {
+                        const tourDataItem = tourData.find(t => t.name.en === tour);
+                        const item = document.createElement('div');
+                        item.className = 'tour-item';
+                        item.innerHTML = `
+                            <span><strong>${tourDataItem ? tourDataItem.name[currentLanguage] : tour}</strong></span>
+                            <button onclick="BookingModal.removeTour('${tour}')">Remove</button>
+                        `;
+                        this.tourList.appendChild(item);
+                    });
+                }
+                
+                const toursText = this.selectedTours.length !== 1 ? 'experiences' : 'experience';
+                this.modalTitle.textContent = `Request Personalized Experience (${this.selectedTours.length} ${toursText} selected)`;
+            },
+            
+            submitForm: function() {
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const date = document.getElementById('date').value;
+                const people = parseInt(document.getElementById('people').value);
+                const specialRequests = document.getElementById('special-requests').value.trim();
+                
+                // Validate all fields
+                const isNameValid = this.validateField(document.getElementById('name'), 'name');
+                const isPhoneValid = this.validateField(document.getElementById('phone'), 'phone');
+                const isEmailValid = this.validateField(document.getElementById('email'), 'email');
+                const isDateValid = this.validateField(document.getElementById('date'), 'date');
+                const isPeopleValid = this.validateField(document.getElementById('people'), 'people');
+                
+                if (!isNameValid || !isPhoneValid || !isEmailValid || !isDateValid || !isPeopleValid || this.selectedTours.length === 0) {
+                    Utils.showNotification(translations[currentLanguage]['notification-form-error'], 'error');
+                    return;
+                }
+                
+                if (people < 1 || people > 8) {
+                    Utils.showNotification(translations[currentLanguage]['notification-people-error'], 'error');
+                    return;
+                }
+                
+                // Show loading state
+                this.submitText.style.display = 'none';
+                this.submitLoading.style.display = 'inline-block';
+                this.submitBtn.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    this.sendBookingRequest(name, phone, email, date, people, specialRequests);
+                }, 1500);
+            },
+            
+            sendBookingRequest: function(name, phone, email, date, people, specialRequests) {
+                // Create WhatsApp message
+                let message = `*EXCLUSIVE EXPERIENCE REQUEST - ULLEN LUZ*%0A%0A`;
+                message += `*REQUESTED EXPERIENCES:*%0A`;
+                message += this.selectedTours.map(tour => {
+                    const tourDataItem = tourData.find(t => t.name.en === tour);
+                    return `- ${tourDataItem ? tourDataItem.name[currentLanguage] : tour}`;
+                }).join('%0A');
+                
+                message += `%0A%0A*REQUEST DETAILS:*%0A`;
+                message += `👤 *Name:* ${name}%0A`;
+                message += `📞 *Phone:* ${phone}%0A`;
+                message += `📧 *Email:* ${email}%0A`;
+                message += `📅 *Preferred Date:* ${Utils.formatDate(date)}%0A`;
+                message += `👥 *Number of guests:* ${people}%0A`;
+                
+                if (specialRequests) {
+                    message += `💎 *Special Preferences:* ${specialRequests}%0A`;
+                }
+                
+                message += `%0A_This request was sent through Ullen Luz's official website_`;
+                
+                const whatsAppNumber = '5521990455492';
+                const whatsAppLink = `https://wa.me/${whatsAppNumber}?text=${message}`;
+                
+                window.open(whatsAppLink, '_blank');
+                
+                // Reset loading state
+                this.submitText.style.display = 'inline-block';
+                this.submitLoading.style.display = 'none';
+                this.submitBtn.disabled = false;
+                
+                Utils.showNotification(translations[currentLanguage]['notification-success']);
+                
+                this.close();
+            }
+        };
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal
+            BookingModal.init();
+            
+            // Language selector functionality
+            const languageBtn = document.querySelector('.language-btn');
+            const languageOptions = document.querySelector('.language-options');
+            
+            languageBtn.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                languageOptions.classList.toggle('show');
+            });
+            
+            // Close language selector when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.language-selector')) {
+                    languageOptions.classList.remove('show');
+                    languageBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Language selection
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll down button
+            document.querySelector('.scroll-down').addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.getElementById('tours').offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Contact form submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                Utils.showNotification(translations[currentLanguage]['notification-contact-success']);
+                this.reset();
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if(window.scrollY > 100) {
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    BookingModal.close();
+                }
+            });
+            
+            // Set English as default language
+            changeLanguage('en');
+        });
+    </script>
+</body>
+</html>
