@@ -47,6 +47,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ========== BASE STYLES ========== */
         :root {
@@ -252,6 +253,7 @@
             background-color: var(--white);
             box-shadow: var(--shadow);
             z-index: 1000;
+            transition: var(--transition);
         }
         
         .navbar {
@@ -303,13 +305,35 @@
         
         .mobile-menu {
             display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+            flex-direction: column;
             background: none;
             border: none;
-            color: var(--primary);
+            cursor: pointer;
             padding: 5px;
             border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            justify-content: space-between;
+        }
+        
+        .menu-icon {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu.active .menu-icon:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu.active .menu-icon:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu.active .menu-icon:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
         
         .mobile-menu:hover, .mobile-menu:focus {
@@ -969,7 +993,7 @@
             }
             
             .mobile-menu {
-                display: block;
+                display: flex;
             }
             
             .hero h1 {
@@ -1066,7 +1090,11 @@
                         </div>
                     </li>
                 </ul>
-                <button class="mobile-menu" aria-label="Open menu" aria-expanded="false">☰</button>
+                <button class="mobile-menu" aria-label="Open menu" aria-expanded="false">
+                    <span class="menu-icon"></span>
+                    <span class="menu-icon"></span>
+                    <span class="menu-icon"></span>
+                </button>
             </nav>
         </div>
     </header>
@@ -1160,36 +1188,7 @@
         <div class="container">
             <h2 data-translate="gallery-title">Exclusive Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg" alt="Christ the Redeemer - Privileged view" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg" alt="Sugarloaf Mountain - Exclusive experience" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Copacabana%20Beach.jpg" alt="Copacabana Beach - VIP access" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Selaronstairs.jpeg" alt="Selarón Steps - Unique perspective" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Arcosdalapa.jpg" alt="Lapa Arches - Cultural experience" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Museu_do_Amanh%C3%A3.jpg" alt="Museum of Tomorrow - Private tour" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Icara%C3%AD%20Beach.jpg" alt="Icaraí Beach - Exclusive view" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Ilha-de-Paqueta.jpg" alt="Paquetá Island - Private refuge" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/Contemporary%20Art%20Museum%20(MAC).jpg" alt="Contemporary Art Museum - Privileged access" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://tripdecoder.github.io/cost%C3%A3o.jpg" alt="Itacoatiara Costão Trail - Exclusive experience" loading="lazy">
-                </div>
+                <!-- Gallery items will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1602,60 +1601,6 @@
             }
         };
 
-        // Current language
-        let currentLanguage = 'en';
-
-        // Function to change language
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Update language button text
-            document.querySelector('.current-language').textContent = lang.toUpperCase();
-            
-            // Update all translatable elements
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-            
-            // Update page title and meta description for SEO
-            if (lang === 'en') {
-                document.title = "Ullen Luz - Exclusive Tourism Experiences in Rio de Janeiro | Actor and Presenter";
-                document.querySelector('meta[name="description"]').setAttribute('content', 
-                    "Ullen Luz offers exclusive and personalized tourism experiences in Rio de Janeiro and Niterói. VIP tours with privileged access and custom itineraries for discerning clients.");
-            } else if (lang === 'fr') {
-                document.title = "Ullen Luz - Expériences Touristiques Exclusives à Rio de Janeiro | Acteur et Présentateur";
-                document.querySelector('meta[name="description"]').setAttribute('content', 
-                    "Ullen Luz propose des expériences touristiques exclusives et personnalisées à Rio de Janeiro et Niterói. Visites VIP avec accès privilégié et itinéraires sur mesure pour clients exigeants.");
-            } else if (lang === 'pt') {
-                document.title = "Ullen Luz - Experiências Turísticas Exclusivas no Rio de Janeiro | Ator e Apresentador";
-                document.querySelector('meta[name="description"]').setAttribute('content', 
-                    "Ullen Luz oferece experiências turísticas exclusivas e personalizadas no Rio de Janeiro e Niterói. Tours VIP com acesso privilegiado e roteiros sob medida para clientes exigentes.");
-            }
-            
-            // Close language selector
-            document.querySelector('.language-options').classList.remove('show');
-            document.querySelector('.language-btn').setAttribute('aria-expanded', 'false');
-            
-            // Update active state in language selector
-            document.querySelectorAll('.language-option').forEach(option => {
-                if (option.getAttribute('data-lang') === lang) {
-                    option.classList.add('active');
-                } else {
-                    option.classList.remove('active');
-                }
-            });
-            
-            // Update tours content
-            BookingModal.populateTours();
-        }
-
         // ========== TOUR DATA ==========
         const tourData = [
             {
@@ -1750,6 +1695,93 @@
             }
         ];
 
+        // ========== GALLERY DATA ==========
+        const galleryData = [
+            {
+                src: "https://tripdecoder.github.io/Christ%20the%20Redeemer.jpg",
+                alt: {
+                    en: "Christ the Redeemer - Privileged view",
+                    fr: "Christ Rédempteur - Vue privilégiée",
+                    pt: "Cristo Redentor - Vista privilegiada"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Sugarloaf%20Mountain.jpg",
+                alt: {
+                    en: "Sugarloaf Mountain - Exclusive experience",
+                    fr: "Pain de Sucre - Expérience exclusive",
+                    pt: "Pão de Açúcar - Experiência exclusiva"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Copacabana%20Beach.jpg",
+                alt: {
+                    en: "Copacabana Beach - VIP access",
+                    fr: "Plage de Copacabana - Accès VIP",
+                    pt: "Praia de Copacabana - Acesso VIP"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Selaronstairs.jpeg",
+                alt: {
+                    en: "Selarón Steps - Unique perspective",
+                    fr: "Escalier Selarón - Perspective unique",
+                    pt: "Escadaria Selarón - Perspectiva única"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Arcosdalapa.jpg",
+                alt: {
+                    en: "Lapa Arches - Cultural experience",
+                    fr: "Arches de Lapa - Expérience culturelle",
+                    pt: "Arcos da Lapa - Experiência cultural"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Museu_do_Amanh%C3%A3.jpg",
+                alt: {
+                    en: "Museum of Tomorrow - Private tour",
+                    fr: "Musée de Demain - Visite privée",
+                    pt: "Museu do Amanhã - Tour privativo"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Icara%C3%AD%20Beach.jpg",
+                alt: {
+                    en: "Icaraí Beach - Exclusive view",
+                    fr: "Plage d'Icaraí - Vue exclusive",
+                    pt: "Praia de Icaraí - Vista exclusiva"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Ilha-de-Paqueta.jpg",
+                alt: {
+                    en: "Paquetá Island - Private refuge",
+                    fr: "Île de Paquetá - Refuge privé",
+                    pt: "Ilha de Paquetá - Refúgio privativo"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/Contemporary%20Art%20Museum%20(MAC).jpg",
+                alt: {
+                    en: "Contemporary Art Museum - Privileged access",
+                    fr: "Musée d'Art Contemporain - Accès privilégié",
+                    pt: "Museu de Arte Contemporânea - Acesso privilegiado"
+                }
+            },
+            {
+                src: "https://tripdecoder.github.io/cost%C3%A3o.jpg",
+                alt: {
+                    en: "Itacoatiara Costão Trail - Exclusive experience",
+                    fr: "Sentier Costão d'Itacoatiara - Expérience exclusive",
+                    pt: "Trilha do Costão de Itacoatiara - Experiência exclusiva"
+                }
+            }
+        ];
+
+        // Current language
+        let currentLanguage = 'en';
+
         // ========== UTILITY FUNCTIONS ==========
         const Utils = {
             validatePhone: (phone) => {
@@ -1799,6 +1831,19 @@
                 `;
                 
                 return card;
+            },
+            
+            createGalleryItem: (item) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.alt[currentLanguage];
+                img.loading = 'lazy';
+                
+                galleryItem.appendChild(img);
+                return galleryItem;
             },
             
             setMinDate: () => {
@@ -2110,10 +2155,81 @@
             }
         };
 
+        // ========== GALLERY MANAGEMENT ==========
+        const GalleryManager = {
+            init: function() {
+                this.populateGallery();
+            },
+            
+            populateGallery: function() {
+                const galleryGrid = document.querySelector('.gallery-grid');
+                galleryGrid.innerHTML = '';
+                
+                galleryData.forEach(item => {
+                    galleryGrid.appendChild(Utils.createGalleryItem(item));
+                });
+            }
+        };
+
+        // ========== LANGUAGE MANAGEMENT ==========
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language button text
+            document.querySelector('.current-language').textContent = lang.toUpperCase();
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update page title and meta description for SEO
+            if (lang === 'en') {
+                document.title = "Ullen Luz - Exclusive Tourism Experiences in Rio de Janeiro | Actor and Presenter";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz offers exclusive and personalized tourism experiences in Rio de Janeiro and Niterói. VIP tours with privileged access and custom itineraries for discerning clients.");
+            } else if (lang === 'fr') {
+                document.title = "Ullen Luz - Expériences Touristiques Exclusives à Rio de Janeiro | Acteur et Présentateur";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz propose des expériences touristiques exclusives et personnalisées à Rio de Janeiro et Niterói. Visites VIP avec accès privilégié et itinéraires sur mesure pour clients exigeants.");
+            } else if (lang === 'pt') {
+                document.title = "Ullen Luz - Experiências Turísticas Exclusivas no Rio de Janeiro | Ator e Apresentador";
+                document.querySelector('meta[name="description"]').setAttribute('content', 
+                    "Ullen Luz oferece experiências turísticas exclusivas e personalizadas no Rio de Janeiro e Niterói. Tours VIP com acesso privilegiado e roteiros sob medida para clientes exigentes.");
+            }
+            
+            // Close language selector
+            document.querySelector('.language-options').classList.remove('show');
+            document.querySelector('.language-btn').setAttribute('aria-expanded', 'false');
+            
+            // Update active state in language selector
+            document.querySelectorAll('.language-option').forEach(option => {
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            
+            // Update tours content
+            BookingModal.populateTours();
+            GalleryManager.populateGallery();
+        }
+
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize modal
             BookingModal.init();
+            
+            // Initialize gallery
+            GalleryManager.init();
             
             // Language selector functionality
             const languageBtn = document.querySelector('.language-btn');
@@ -2148,6 +2264,7 @@
             mobileMenuBtn.addEventListener('click', function() {
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
                 this.setAttribute('aria-expanded', !isExpanded);
+                this.classList.toggle('active');
                 navLinks.classList.toggle('active');
             });
 
@@ -2156,6 +2273,7 @@
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('active');
                 });
             });
 
